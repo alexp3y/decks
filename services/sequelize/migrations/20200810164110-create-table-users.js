@@ -42,6 +42,11 @@ module.exports = {
         charset: 'utf8',
       }
     );
+    await queryInterface.addConstraint('users', {
+      fields: ['email'],
+      type: 'unique',
+      name: 'users_email_unique',
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

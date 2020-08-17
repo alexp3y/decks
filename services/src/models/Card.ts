@@ -14,7 +14,7 @@ import { ObjectType, ID, Field } from 'type-graphql';
 
 @ObjectType()
 @Table({ tableName: 'cards' })
-class Card extends Model<Card> {
+export default class Card extends Model<Card> {
   @Field((type) => ID)
   @PrimaryKey
   @Column
@@ -44,5 +44,3 @@ class Card extends Model<Card> {
   @BelongsTo(() => Deck)
   deck!: Deck;
 }
-
-export default Card;

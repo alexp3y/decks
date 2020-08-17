@@ -14,7 +14,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 
 @ObjectType()
 @Table({ tableName: 'messages' })
-class Message extends Model<Message> {
+export default class Message extends Model<Message> {
   @Field((type) => ID)
   @PrimaryKey
   @Column
@@ -39,5 +39,3 @@ class Message extends Model<Message> {
   @BelongsTo(() => User)
   users!: User[];
 }
-
-export default Message;

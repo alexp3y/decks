@@ -5,54 +5,52 @@ import {
   Table,
   PrimaryKey,
   AutoIncrement,
-  AllowNull,
   UpdatedAt,
   CreatedAt,
-} from 'sequelize-typescript';
+} from 'sequelize-typescript'
 
-import Deck from './Deck';
-import Message from './Message';
-import { ObjectType, Field, ID } from 'type-graphql';
+import Deck from './Deck'
+import Message from './Message'
+import { ObjectType, Field, ID, Root } from 'type-graphql'
 
 @ObjectType()
 @Table({ tableName: 'users' })
-class User extends Model<User> {
+export default class User extends Model<User> {
   @Field((type) => ID)
   @PrimaryKey
   @AutoIncrement
   @Column
-  id!: number;
+  id!: number
 
   @Field()
   @CreatedAt
-  public createdAt!: Date;
+  public createdAt!: Date
 
   @Field()
   @UpdatedAt
-  public updatedAt!: Date;
+  public updatedAt!: Date
 
   @Column
-  firstName!: string;
+  firstName!: string
 
   @Column
-  lastName!: string;
+  lastName!: string
 
   @Field()
-  name!: String;
+  name(@Root() parent: User): string {
+    return `${parent.firstName} ${parent.lastName}`
+  }
 
   @Field({ description: 'User email address' })
   @Column
-  email!: string;
+  email!: string
 
-  @Field()
   @Column
-  password!: string;
+  password!: string
 
   @HasMany(() => Deck)
-  decks!: Deck[];
+  decks!: Deck[]
 
   @HasMany(() => Message)
-  messages!: Message[];
+  messages!: Message[]
 }
-
-export default User;
