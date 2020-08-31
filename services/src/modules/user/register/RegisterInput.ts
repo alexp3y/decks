@@ -3,7 +3,7 @@ import { MaxLength, Length, IsEmail } from 'class-validator';
 import { IsEmailAlreadyExist } from './isEmailAlreadyExist';
 
 @InputType()
-export class UserInput {
+export class RegisterInput {
   @Field()
   @Length(1, 255)
   firstName!: string;
@@ -11,6 +11,10 @@ export class UserInput {
   @Field()
   @Length(1, 255)
   lastName!: string;
+
+  @Field({ nullable: true })
+  @MaxLength(255)
+  bio?: string;
 
   @Field()
   @Length(1, 255)
@@ -21,8 +25,4 @@ export class UserInput {
   @Field()
   @Length(8, 30) //, { message: 'Password Incorrect Length' })
   password!: string;
-
-  @Field({ nullable: true })
-  @MaxLength(255)
-  bio?: string;
 }

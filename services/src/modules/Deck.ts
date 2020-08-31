@@ -1,5 +1,5 @@
 import { Resolver, Query } from 'type-graphql';
-import Deck from '#root/models/Deck';
+import { Deck } from '#root/models/Deck';
 
 @Resolver(Deck)
 export default class DeckResolver {

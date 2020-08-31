@@ -9,12 +9,12 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import Deck from './Deck';
+import { Deck } from './Deck';
 import { ObjectType, ID, Field } from 'type-graphql';
 
 @ObjectType()
 @Table({ tableName: 'cards' })
-export default class Card extends Model<Card> {
+export class Card extends Model<Card> {
   @Field((type) => ID)
   @PrimaryKey
   @Column

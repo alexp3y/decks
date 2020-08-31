@@ -9,12 +9,12 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import User from './User';
+import { User } from './User';
 import { ObjectType, Field, ID } from 'type-graphql';
 
 @ObjectType()
 @Table({ tableName: 'messages' })
-export default class Message extends Model<Message> {
+export class Message extends Model<Message> {
   @Field((type) => ID)
   @PrimaryKey
   @Column

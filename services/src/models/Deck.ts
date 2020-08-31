@@ -11,13 +11,13 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import Card from './Card';
-import User from './User';
+import { Card } from './Card';
+import { User } from './User';
 import { ID, Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
 @Table({ tableName: 'decks' })
-export default class Deck extends Model {
+export class Deck extends Model {
   @Field((type) => ID)
   @PrimaryKey
   @Column

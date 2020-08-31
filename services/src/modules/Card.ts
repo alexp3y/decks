@@ -1,5 +1,5 @@
 import { Resolver, Query } from 'type-graphql';
-import Card from '#root/models/Card';
+import { Card } from '#root/models/Card';
 
 @Resolver(Card)
 export default class CardResolver {
