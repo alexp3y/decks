@@ -1,6 +1,0 @@
-basic set-up:
-  npm i express graphql type-graphql apollo-server-express reflect-metadata
-  npm i -D typescript ts-node-dev @types/express @types/graphql @types/node
-
-++tsconfig.js
-++src/server.ts
