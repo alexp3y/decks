@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  min-width: 75vh;
+  border: 4px solid #61dafb;
+}
+.Card-flipped {
+  border: 4px solid #fb6161;
+}
+.Card-count-flipped {
+  color: #282c34;
+}
+
+h1 {
+  padding: 2vh;
+}
+
+.Content {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
