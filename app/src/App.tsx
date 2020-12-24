@@ -1,11 +1,11 @@
+import { AppBar, Toolbar } from '@material-ui/core';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Card } from './components/Card';
-import axios from 'axios';
-import { ICard, IDeck } from './types';
 import { Counter } from './components/Counter';
 import { SliderCard } from './components/SliderCard';
-import { Slide } from '@material-ui/core';
+import { ICard, IDeck } from './types';
 
 const deck: IDeck = {
   cards: [],
@@ -17,7 +17,7 @@ const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 };
 
 function App() {
-  const [card, setCard] = useState({
+  const [card, setCard] = useState<ICard>({
     index: 0,
     id: 0,
     front: '',
@@ -75,18 +75,23 @@ function App() {
   };
   return (
     <div className="App">
+      <AppBar className="Bar" position="static">
+        <Toolbar className="Bar" variant="regular">
+          <div className="Logo">
+            <h3>DECKS</h3>
+          </div>
+        </Toolbar>
+      </AppBar>
       <div
         tabIndex={0}
         className="Content"
         onKeyDown={handleKeyPress}
         onClick={handleClick}
       >
-        <div>
-          <Counter index={card.index} size={deck.cards.length} />
-          <div style={{ position: 'relative' }}>
-            <Card card={card} />
-            <SliderCard moveIn={true} direction={'right'} card={card} />
-          </div>
+        <Counter index={card.index} size={deck.cards.length} />
+        <div className="Card-display">
+          <Card card={card} />
+          <SliderCard moveIn={true} direction={'right'} card={card} />
         </div>
       </div>
     </div>

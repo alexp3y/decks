@@ -1,16 +1,49 @@
 .App {
   text-align: center;
 }
+.Logo {
+  background: url(NC-Logo.jpg);
+  background-size: contain;
+  width: 100px;
+  height: 45px;
+  margin: 0;
+  display: flex;
+}
+.Logo > h3 {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.Content {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.Bar {
+  background-color: #61dafb;
+  color: #282c34;
+}
+.Card-display {
+  position: relative;
+  min-height: 75vh;
+}
 .Card {
   display: flex;
   flex-direction: column;
   min-width: 75vh;
   border: 4px solid #61dafb;
   position: absolute;
-  top: 50%; /* position the top  edge of the element at the middle of the parent */
+  margin-top: 20vh;
   left: 50%; /* position the left edge of the element at the middle of the parent */
-
   transform: translate(-50%, -50%);
+  background: url(Notecard.jpg);
 }
 .Card-flipped {
   border: 4px solid #fb6161;
@@ -21,17 +54,6 @@
 
 h1 {
   padding: 2vh;
-}
-
-.Content {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
