@@ -13,6 +13,10 @@
   margin-top: 10px;
   margin-left: 20px;
 }
+.Bar {
+  background-color: #61dafb;
+  color: #282c34;
+}
 .Content {
   position: fixed;
   height: 100%;
@@ -22,27 +26,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-.Bar {
-  background-color: #61dafb;
-  color: #282c34;
-}
-.Card-display {
-  position: relative;
-  min-height: 75vh;
 }
 .Card {
   display: flex;
   flex-direction: column;
-  min-width: 75vh;
+  width: 75vh;
+  max-width: 90%;
   border: 4px solid #61dafb;
-  position: absolute;
-  margin-top: 20vh;
-  left: 50%; /* position the left edge of the element at the middle of the parent */
-  transform: translate(-50%, -50%);
+  /* position: absolute; */
+  margin-top: 15vh;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
   background: url(Notecard.jpg);
 }
 .Card-flipped {
@@ -51,20 +47,27 @@
 .Card-count-flipped {
   color: #282c34;
 }
-
 h1 {
   padding: 2vh;
 }
-
-.App-link {
-  color: #61dafb;
+.Navigation {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 75%;
+  margin-top: 3vh;
+}
+.Button-arrow {
+  flex-shrink: inherit;
+}
+.Icon-arrow {
+  min-width: 6vh;
+  min-height: 6vh;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Icon-arrow:active {
+  color: #fb6161;
 }

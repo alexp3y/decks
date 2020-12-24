@@ -1,9 +1,21 @@
+export type AppState = {
+  card: ICard | null;
+  activeIndex: number;
+  deckReversed: boolean;
+  cardFlipped: boolean;
+};
+
+export type StateUpdate = {
+  card?: ICard | null;
+  activeIndex?: number;
+  deckReversed?: boolean;
+  cardFlipped?: boolean;
+};
+
 export type ICard = {
-  index: number;
   id: number;
   front: string;
   back: string;
-  flipped: boolean;
 };
 
 export type IDeck = {
