@@ -1,18 +1,19 @@
+import { Paper } from '@material-ui/core';
 import React from 'react';
 import { ICard } from '../types';
 
 interface Props {
-  size: number;
   card: ICard;
 }
 
-export const Card: React.FC<Props> = ({ size, card }) => {
+export const Card: React.FC<Props> = ({ card }) => {
   const getClasses = (baseClass: string) =>
     `${baseClass} ${card.flipped ? `${baseClass}-flipped` : ''}`;
+
   return (
-    <div className={getClasses('Card')}>
+    <Paper className={getClasses('Card')} elevation={4}>
       <h1>{card.flipped ? card.back : card.front}</h1>
       <h6>{card.flipped ? 'back' : 'front'}</h6>
-    </div>
+    </Paper>
   );
 };

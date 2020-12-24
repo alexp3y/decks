@@ -4,6 +4,8 @@ import { Card } from './components/Card';
 import axios from 'axios';
 import { ICard, IDeck } from './types';
 import { Counter } from './components/Counter';
+import { SliderCard } from './components/SliderCard';
+import { Slide } from '@material-ui/core';
 
 const deck: IDeck = {
   cards: [],
@@ -79,8 +81,13 @@ function App() {
         onKeyDown={handleKeyPress}
         onClick={handleClick}
       >
-        <Counter index={card.index} size={deck.cards.length} />
-        <Card size={deck.cards.length} card={card}></Card>
+        <div>
+          <Counter index={card.index} size={deck.cards.length} />
+          <div style={{ position: 'relative' }}>
+            <Card card={card} />
+            <SliderCard moveIn={true} direction={'right'} card={card} />
+          </div>
+        </div>
       </div>
     </div>
   );
