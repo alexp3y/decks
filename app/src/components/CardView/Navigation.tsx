@@ -18,15 +18,11 @@ export const Navigation: React.FC<Props> = ({
 }) => {
   return (
     <div className="Navigation">
-      <IconButton href="#back" className="Button-arrow" onClick={onBackClick}>
+      <IconButton href="" className="Button-arrow" onClick={onBackClick}>
         <ArrowBack className="Icon-arrow" />
       </IconButton>
       <Counter index={cardIndex} size={deckSize} />
-      <IconButton
-        href="#next"
-        className="Button-arrow"
-        onClick={onForwardClick}
-      >
+      <IconButton href="" className="Button-arrow" onClick={onForwardClick}>
         <ArrowForward className="Icon-arrow" />
       </IconButton>
     </div>
