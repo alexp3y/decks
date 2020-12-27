@@ -1,34 +1,35 @@
-import { Paper, Slide } from '@material-ui/core';
+import { Slide } from '@material-ui/core';
 import React from 'react';
-import { Card } from './CardView/Card';
+import { AppState } from '../types';
+import { Deck } from './DeckView/Deck';
 
 interface Props {
-  show: boolean;
+  state: AppState;
   onClick(e: React.MouseEvent<HTMLDivElement>): void;
-  onExit(): void;
+  onExited(): void;
 }
 
-export const DeckView: React.FC<Props> = ({ show, onExit, onClick }) => {
+export const DeckView: React.FC<Props> = ({ state, onExited, onClick }) => {
   return (
     <Slide
-      onExited={onExit}
+      onExited={onExited}
       direction="right"
-      in={show}
+      in={state.deckViewOn}
       timeout={500}
       unmountOnExit={true}
     >
-      {/* <Card /> */}
-      <Paper className="Card-empty" onClick={onClick}></Paper>
+      <div className="DeckView">
+        {state.decks.map((deck) => {
+          return (
+            <Deck
+              deck={deck}
+              deckViewOn={state.deckViewOn}
+              onClick={onClick}
+              onExited={onExited}
+            />
+          );
+        })}
+      </div>
     </Slide>
-
-    // card={state.card!}
-    // flipped={state.cardFlipped!}
-    // reversed={state.deckReversed}
-    // <Navigation
-    //   cardIndex={state.activeIndex}
-    //   deckSize={deck.cards.length}
-    //   onBackClick={handleBackClick}
-    //   onForwardClick={handleForwardClick}
-    // />
   );
 };

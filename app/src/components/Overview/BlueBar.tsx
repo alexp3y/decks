@@ -9,13 +9,11 @@ interface Props {
 export const BlueBar: React.FC<Props> = ({ show }) => {
   return (
     <Slide in={show} direction={'left'} timeout={500} unmountOnExit={true}>
-      {/* <Collapse in={show} timeout={500}> */}
-      <AppBar position="static">
+      <AppBar position="static" elevation={3}>
         <Toolbar className="Bar-blue" variant="regular">
           <Logo />
         </Toolbar>
       </AppBar>
-      {/* </Collapse> */}
     </Slide>
   );
 };
