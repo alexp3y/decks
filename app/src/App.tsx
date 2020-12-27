@@ -15,7 +15,6 @@ function App() {
     cardFlipped: false,
     decks: [],
     cards: [],
-    card: null,
   });
 
   useEffect(() => {
@@ -41,7 +40,7 @@ function App() {
       let prevIndex = state.activeIndex - 1;
       setState({
         ...state,
-        card: state.cards[prevIndex],
+        activeCard: state.cards[prevIndex],
         activeIndex: prevIndex,
         cardFlipped: false,
       });
@@ -53,7 +52,7 @@ function App() {
       let nextIndex = state.activeIndex + 1;
       setState({
         ...state,
-        card: state.cards[nextIndex],
+        activeCard: state.cards[nextIndex],
         activeIndex: nextIndex,
         cardFlipped: false,
       });
@@ -64,7 +63,7 @@ function App() {
     let randomIndex = Math.floor(Math.random() * state.cards.length);
     setState({
       ...state,
-      card: state.cards[randomIndex],
+      activeCard: state.cards[randomIndex],
       activeIndex: randomIndex,
       cardFlipped: false,
     });
@@ -73,7 +72,7 @@ function App() {
   const turnDeck = () => {
     setState({
       ...state,
-      deckReversed: state.deckReversed,
+      deckReversed: !state.deckReversed,
     });
   };
 
@@ -81,7 +80,11 @@ function App() {
     setState({ ...state, cardFlipped: !state.cardFlipped });
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const closeCardView = () => {
+    setState({ ...state, cardViewOn: false });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     switch (e.key) {
       case 'ArrowRight':
         nextCard();
@@ -98,6 +101,9 @@ function App() {
       case ' ':
         flipCard();
         break;
+      case 'Escape':
+        closeCardView();
+        break;
       default:
         break;
     }
@@ -112,32 +118,32 @@ function App() {
   };
 
   const handleCardOpenClick = async (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log(e);
-
-    let cards = await fetchCards((e.target as HTMLElement).id);
+    let deckId = (e.target as HTMLElement).id;
+    let cards = await fetchCards(deckId);
     await setState({
       ...state,
       deckViewOn: false,
+      activeDeck: state.decks.find((d) => d.id === Number(deckId)),
       cards,
-      card: cards[0],
+      activeCard: cards[0],
     });
   };
 
-  const handleDeckViewExit = () => {
+  const handleCardCloseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeCardView();
+  };
+
+  const handleDeckViewExited = () => {
     setState({ ...state, cardViewOn: true });
   };
 
-  const handleCardCloseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    setState({ ...state, cardViewOn: false });
-  };
-
-  const handleCardViewExit = () => {
+  const handleCardViewExited = () => {
     setState({ ...state, deckViewOn: true });
   };
 
   return (
-    <div className="App">
-      <div className="Content" onKeyPress={handleKeyPress}>
+    <div className="App" onKeyDown={handleKeyDown}>
+      <div className="Content" tabIndex={0}>
         <Overview
           showRed={state.cardViewOn}
           showBlue={state.deckViewOn}
@@ -145,12 +151,12 @@ function App() {
         />
         <DeckView
           state={state}
-          onExited={handleDeckViewExit}
+          onExited={handleDeckViewExited}
           onClick={handleCardOpenClick}
         />
         <CardView
           state={state}
-          onExited={handleCardViewExit}
+          onExited={handleCardViewExited}
           onBackClick={handleBackClick}
           onForwardClick={handleForwardClick}
         />

@@ -26,8 +26,11 @@ export const CardView: React.FC<Props> = ({
       unmountOnExit={true}
     >
       <div className="CardView">
+        <h4 className="CardView-title">
+          {state.activeDeck?.name ? state.activeDeck.name : ''}
+        </h4>
         <Card
-          card={state.card}
+          card={state.activeCard!}
           flipped={state.cardFlipped}
           reversed={state.deckReversed}
         />

@@ -3,8 +3,9 @@ export type AppState = {
   deckViewOn: boolean;
   cardViewOn: boolean;
   decks: IDeck[];
+  activeDeck?: IDeck;
   cards: ICard[];
-  card: ICard | null;
+  activeCard?: ICard;
   activeIndex: number;
   deckReversed: boolean;
   cardFlipped: boolean;

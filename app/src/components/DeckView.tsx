@@ -20,14 +20,7 @@ export const DeckView: React.FC<Props> = ({ state, onExited, onClick }) => {
     >
       <div className="DeckView">
         {state.decks.map((deck) => {
-          return (
-            <Deck
-              deck={deck}
-              deckViewOn={state.deckViewOn}
-              onClick={onClick}
-              onExited={onExited}
-            />
-          );
+          return <Deck deck={deck} onClick={onClick} />;
         })}
       </div>
     </Slide>
