@@ -119,14 +119,16 @@ function App() {
 
   const handleCardOpenClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     let deckId = (e.target as HTMLElement).id;
-    let cards = await fetchCards(deckId);
-    await setState({
-      ...state,
-      deckViewOn: false,
-      activeDeck: state.decks.find((d) => d.id === Number(deckId)),
-      cards,
-      activeCard: cards[0],
-    });
+    if (deckId) {
+      let cards = await fetchCards(deckId);
+      await setState({
+        ...state,
+        deckViewOn: false,
+        activeDeck: state.decks.find((d) => d.id === Number(deckId)),
+        cards,
+        activeCard: cards[0],
+      });
+    }
   };
 
   const handleCardCloseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -145,8 +147,9 @@ function App() {
     <div className="App" onKeyDown={handleKeyDown}>
       <div className="Content" tabIndex={0}>
         <Overview
-          showRed={state.cardViewOn}
-          showBlue={state.deckViewOn}
+          state={state}
+          showCardView={state.cardViewOn}
+          showDeckView={state.deckViewOn}
           onCardExitClick={handleCardCloseClick}
         />
         <DeckView

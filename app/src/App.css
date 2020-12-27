@@ -24,6 +24,19 @@
   background-color: #282c34;
   color: #282c34;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.Banner {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  color: #282c34;
+  background-color: #fb6161;
+  height: 65px;
+  line-height: 65px;
+  display: inline-block;
+  padding: 0px 16px;
 }
 .Bar-red {
   position: fixed;
@@ -33,7 +46,7 @@
   height: 55px;
   color: #282c34;
   background-color: #fb6161;
-  max-width: 13vh;
+  max-width: 65px;
   display: flex;
   justify-content: flex-end;
 }
@@ -66,6 +79,7 @@
   max-width: 90%;
   border: 4px solid #61dafb;
   background: url(Notecard.jpg);
+  margin-top: 20px;
 }
 .Card-flipped {
   border: 4px solid #fb6161;
@@ -98,14 +112,17 @@
   margin: 20px 10px;
   text-align: center;
   background: url(Notecard.jpg);
+  border: 3px solid white;
 }
-h1 {
-  padding: 2vh;
+.Deck:hover {
+  border: 3px solid #61dafb;
+}
+.Deck:active {
+  border: 3px solid #fb6161;
 }
 .CardView-title {
   height: 6vh;
   margin-top: 0px;
-  /* margin-bottom: 64px; */
 }
 .Navigation {
   display: flex;
@@ -124,6 +141,9 @@ h1 {
   min-width: 6vh;
   min-height: 6vh;
   color: white;
+}
+.Icon-arrow:hover {
+  color: #61dafb;
 }
 .Icon-arrow:active {
   color: #fb6161;
