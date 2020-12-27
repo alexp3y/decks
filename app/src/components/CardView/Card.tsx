@@ -15,8 +15,9 @@ export const Card: React.FC<Props> = ({ card, flipped, reversed }) => {
       `${baseClass} ${flipped ? `${baseClass}-flipped` : ''}`;
     return (
       <Paper className={getClasses('Card')} elevation={4}>
-        <h1>{flipped ? card.back : card.front}</h1>
-        <h6>{flipped ? 'back' : 'front'}</h6>
+        <div className="Card-text">
+          <h1>{flipped ? card.back : card.front}</h1>
+        </div>
       </Paper>
     );
   } else {

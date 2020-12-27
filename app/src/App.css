@@ -4,16 +4,20 @@
 .Logo {
   background: url(NC-Logo.jpg);
   background-size: contain;
-  width: 100px;
-  height: 45px;
+  width: 105px;
+  height: 63px;
   margin: 0;
   display: flex;
 }
 .Logo > h3 {
+  font-family: 'Indie Flower', cursive;
   position: relative;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-left: 18px;
+  font-size: 30px;
+  width: 105px;
+  height: 63px;
+  text-align: center;
+  line-height: 63px;
+  margin: 0;
 }
 .Overview {
   position: fixed;
@@ -33,17 +37,17 @@
   font-size: calc(10px + 2vmin);
   color: #282c34;
   background-color: #fb6161;
-  height: 65px;
-  line-height: 65px;
+  height: 8vh;
+  line-height: 8vh;
   display: inline-block;
-  padding: 0px 16px;
+  padding: 0px 40px;
 }
 .Bar-red {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
-  height: 55px;
+  height: 60px;
   color: #282c34;
   background-color: #fb6161;
   max-width: 65px;
@@ -51,7 +55,6 @@
   justify-content: flex-end;
 }
 .Bar-blue {
-  z-index: 9999;
   height: 20px;
   color: #282c34;
   background-color: #61dafb;
@@ -75,14 +78,23 @@
 .Card {
   display: flex;
   flex-direction: column;
-  min-width: 60%;
+  height: 35vh;
+  min-height: 175px;
+  max-height: 50vh;
+  width: 75vh;
   max-width: 90%;
-  border: 4px solid #61dafb;
+  min-width: 400px;
+  border: 3px solid #61dafb;
   background: url(Notecard.jpg);
-  margin-top: 20px;
+  margin-top: 50px;
+  align-items: center;
+}
+.Card-text {
+  font-size: calc(10px + 1vmin);
+  margin: 5vh 5px;
 }
 .Card-flipped {
-  border: 4px solid #fb6161;
+  border: 3px solid #fb6161;
 }
 .Card-count-flipped {
   color: #282c34;
@@ -119,6 +131,9 @@
 }
 .Deck:active {
   border: 3px solid #fb6161;
+}
+.Deck-title {
+  margin: 50px 10px;
 }
 .CardView-title {
   height: 6vh;
