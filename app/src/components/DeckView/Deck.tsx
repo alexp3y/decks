@@ -15,7 +15,9 @@ export const Deck: React.FC<Props> = ({ deck, onClick }) => {
       onClick={onClick}
       elevation={3}
     >
-      <h4 className="Deck-title">{deck.name}</h4>
+      <h4 className="Deck-title" id={deck.id.toString()} onClick={onClick}>
+        {deck.name}
+      </h4>
     </Paper>
   );
 };

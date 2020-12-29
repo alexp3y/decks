@@ -3,6 +3,7 @@ import { AppState } from '../types';
 import { Banner } from './Overview/Banner';
 import { BlueBar } from './Overview/BlueBar';
 import { RedBar } from './Overview/RedBar';
+import { RedBarLogo } from './Overview/RedBarLogo';
 
 interface Props {
   state: AppState;
@@ -21,6 +22,7 @@ export const Overview: React.FC<Props> = ({
     <div className="Overview">
       <RedBar show={showCardView} onClick={onCardExitClick} />
       <Banner show={showCardView} state={state} />
+      <RedBarLogo show={showCardView} onClick={onCardExitClick} />
       <BlueBar show={showDeckView} />
     </div>
   );

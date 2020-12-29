@@ -1,4 +1,4 @@
-import { AppBar, Slide, Toolbar } from '@material-ui/core';
+import { AppBar, Button, Slide, Toolbar } from '@material-ui/core';
 import React from 'react';
 import { Logo } from './Logo';
 
@@ -12,6 +12,7 @@ export const BlueBar: React.FC<Props> = ({ show }) => {
       <AppBar position="static" elevation={3}>
         <Toolbar className="Bar-blue" variant="regular">
           <Logo />
+          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Slide>

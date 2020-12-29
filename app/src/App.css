@@ -41,20 +41,34 @@
   line-height: 8vh;
   display: inline-block;
   padding: 0px 40px;
+  font-family: 'Indie Flower', cursive;
 }
 .Bar-red {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
   height: 60px;
   color: #282c34;
   background-color: #fb6161;
-  max-width: 65px;
+  /* max-width: 95px; */
+  display: flex;
+  justify-content: flex-end;
+}
+.Bar-red-logo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 64px;
+  color: #282c34;
+  background-color: #fb6161;
+  max-width: 130px;
+  padding-right: 30px;
   display: flex;
   justify-content: flex-end;
 }
 .Bar-blue {
+  display: flex;
+  justify-content: flex-end;
   height: 20px;
   color: #282c34;
   background-color: #61dafb;
@@ -125,6 +139,8 @@
   text-align: center;
   background: url(Notecard.jpg);
   border: 3px solid white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 5vh;
 }
 .Deck:hover {
   border: 3px solid #61dafb;
