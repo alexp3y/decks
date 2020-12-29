@@ -1,23 +1,11 @@
+button:focus {
+  outline-style: none;
+}
+p {
+  margin: 0px;
+}
 .App {
-  text-align: center;
-}
-.Logo {
-  background: url(NC-Logo.jpg);
-  background-size: contain;
-  width: 105px;
-  height: 63px;
-  margin: 0;
-  display: flex;
-}
-.Logo > h3 {
   font-family: 'Indie Flower', cursive;
-  position: relative;
-  font-size: 30px;
-  width: 105px;
-  height: 63px;
-  text-align: center;
-  line-height: 63px;
-  margin: 0;
 }
 .Overview {
   position: fixed;
@@ -29,51 +17,71 @@
   color: #282c34;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-between;
 }
-.Banner {
-  text-align: center;
-  font-size: calc(10px + 2vmin);
-  color: #282c34;
-  background-color: #fb6161;
-  height: 8vh;
-  line-height: 8vh;
-  display: inline-block;
-  padding: 0px 40px;
-  font-family: 'Indie Flower', cursive;
-}
-.Bar-red {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 60px;
-  color: #282c34;
-  background-color: #fb6161;
-  /* max-width: 95px; */
-  display: flex;
-  justify-content: flex-end;
-}
-.Bar-red-logo {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 64px;
-  color: #282c34;
-  background-color: #fb6161;
-  max-width: 130px;
-  padding-right: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-.Bar-blue {
-  display: flex;
-  justify-content: flex-end;
-  height: 20px;
+.AppBar {
   color: #282c34;
   background-color: #61dafb;
-  margin-right: 75%;
   width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+.AppBar-card {
+  width: 275px;
+}
+.Logo {
+  background: url(NC-Logo.jpg);
+  background-size: contain;
+  width: 105px;
+  height: 64px;
+  margin: 0px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Logo > h3 {
+  font-size: 35px;
+}
+.ProfileBox {
+  margin: 0px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ProfileButton {
+  border: solid 1px black;
+  height: 55px;
+  width: 55px;
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  font-size: 25px;
+}
+.ProfileButton:hover {
+  border: solid 1px #b84a4a;
+}
+.ProfileButton:active {
+  background-color: #fb6161;
+}
+.Banner {
+  background-color: #fb6161;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 35%;
+}
+.DeckTitle {
+  font-size: 35px;
+  margin-left: 10px;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+}
+.DeckTitle > p {
+  height: 35px;
+  word-break: break-all;
+  padding-bottom: 10px;
 }
 .Content {
   position: fixed;

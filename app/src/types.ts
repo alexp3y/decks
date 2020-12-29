@@ -1,7 +1,9 @@
 export type AppState = {
   user?: IUser;
   deckViewOn: boolean;
+  deckViewExited: boolean;
   cardViewOn: boolean;
+  cardViewExited: boolean;
   decks: IDeck[];
   activeDeck?: IDeck;
   cards: ICard[];

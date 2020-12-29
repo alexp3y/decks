@@ -1,17 +1,26 @@
 import { Box, Slide } from '@material-ui/core';
 import React from 'react';
+import { TRANSITION_TIME } from '../../constants';
 import { AppState } from '../../types';
+import { CloseButton } from './Banner/CloseButton';
+import { DeckTitle } from './Banner/DeckTitle';
 
 interface Props {
   state: AppState;
-  show: boolean;
+  onClick(e: React.MouseEvent<HTMLAnchorElement>): void;
 }
 
-export const Banner: React.FC<Props> = ({ show, state }) => {
+export const Banner: React.FC<Props> = ({ state, onClick }) => {
   return (
-    <Slide in={show} direction="down" timeout={500} unmountOnExit={true}>
+    <Slide
+      in={state.cardViewOn}
+      direction={'right'}
+      timeout={TRANSITION_TIME}
+      unmountOnExit={true}
+    >
       <Box className="Banner" boxShadow={3} borderRadius={1.5}>
-        {state.activeDeck ? state.activeDeck.name : ''}
+        <DeckTitle state={state} />
+        <CloseButton onClick={onClick} />
       </Box>
     </Slide>
   );

@@ -9,7 +9,9 @@ import { AppState } from './types';
 function App() {
   const [state, setState] = useState<AppState>({
     deckViewOn: true,
+    deckViewExited: false,
     cardViewOn: false,
+    cardViewExited: true,
     activeIndex: 0,
     deckReversed: false,
     cardFlipped: false,
@@ -80,10 +82,6 @@ function App() {
     setState({ ...state, cardFlipped: !state.cardFlipped });
   };
 
-  const closeCardView = () => {
-    setState({ ...state, cardViewOn: false });
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     switch (e.key) {
       case 'ArrowRight':
@@ -117,49 +115,70 @@ function App() {
     previousCard();
   };
 
-  const handleCardOpenClick = async (e: React.MouseEvent<HTMLDivElement>) => {
+  const onCardOpenClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     let deckId = (e.target as HTMLElement).id;
     if (deckId) {
-      let cards = await fetchCards(deckId);
-      await setState({
-        ...state,
-        deckViewOn: false,
-        activeDeck: state.decks.find((d) => d.id === Number(deckId)),
-        cards,
-        activeCard: cards[0],
-      });
+      await closeDeckView(deckId);
     }
   };
 
-  const handleCardCloseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onCardCloseClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     closeCardView();
   };
 
-  const handleDeckViewExited = () => {
-    setState({ ...state, cardViewOn: true });
+  const onDeckViewExited = () => {
+    openCardView();
   };
 
-  const handleCardViewExited = () => {
-    setState({ ...state, deckViewOn: true });
+  const onCardViewExited = () => {
+    openDeckView();
+  };
+
+  const openCardView = () => {
+    setState({
+      ...state,
+      cardViewOn: true,
+      deckViewExited: true,
+      cardViewExited: false,
+    });
+  };
+
+  const openDeckView = () => {
+    setState({
+      ...state,
+      deckViewOn: true,
+      cardViewExited: true,
+      deckViewExited: false,
+    });
+  };
+
+  const closeCardView = () => {
+    setState({ ...state, cardViewOn: false });
+  };
+
+  const closeDeckView = async (deckId: string) => {
+    let cards = await fetchCards(deckId);
+    setState({
+      ...state,
+      deckViewOn: false,
+      activeDeck: state.decks.find((d) => d.id === Number(deckId)),
+      cards,
+      activeCard: cards[0],
+    });
   };
 
   return (
     <div className="App" onKeyDown={handleKeyDown}>
       <div className="Content" tabIndex={0}>
-        <Overview
-          state={state}
-          showCardView={state.cardViewOn}
-          showDeckView={state.deckViewOn}
-          onCardExitClick={handleCardCloseClick}
-        />
+        <Overview state={state} onExitClick={onCardCloseClick} />
         <DeckView
           state={state}
-          onExited={handleDeckViewExited}
-          onClick={handleCardOpenClick}
+          onExited={onDeckViewExited}
+          onClick={onCardOpenClick}
         />
         <CardView
           state={state}
-          onExited={handleCardViewExited}
+          onExited={onCardViewExited}
           onBackClick={handleBackClick}
           onForwardClick={handleForwardClick}
         />
