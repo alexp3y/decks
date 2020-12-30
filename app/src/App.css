@@ -35,7 +35,7 @@ p {
   background-size: contain;
   width: 105px;
   height: 64px;
-  margin: 0px 24px;
+  margin: 0px 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,13 +44,13 @@ p {
   font-size: 35px;
 }
 .ProfileBox {
-  margin: 0px 24px;
+  margin: 0px 28px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .ProfileButton {
-  border: solid 1px black;
+  border: solid 1px #282c34;
   height: 55px;
   width: 55px;
   background-color: white;
@@ -58,10 +58,8 @@ p {
   color: black;
   font-size: 25px;
 }
-.ProfileButton:hover {
-  border: solid 1px #b84a4a;
-}
 .ProfileButton:active {
+  border: solid 1px #b84a4a;
   background-color: #fb6161;
 }
 .Banner {
@@ -69,7 +67,7 @@ p {
   height: 64px;
   display: flex;
   justify-content: space-between;
-  max-width: 35%;
+  max-width: 45%;
 }
 .DeckTitle {
   font-size: 35px;
@@ -82,6 +80,9 @@ p {
   height: 35px;
   word-break: break-all;
   padding-bottom: 10px;
+}
+.CloseButton-icon:hover {
+  color: rgba(40, 44, 52, 0.7);
 }
 .Content {
   position: fixed;
@@ -96,39 +97,6 @@ p {
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-.Card {
-  display: flex;
-  flex-direction: column;
-  height: 35vh;
-  min-height: 175px;
-  max-height: 50vh;
-  width: 75vh;
-  max-width: 90%;
-  min-width: 400px;
-  border: 3px solid #61dafb;
-  background: url(Notecard.jpg);
-  margin-top: 50px;
-  align-items: center;
-}
-.Card-text {
-  font-size: calc(10px + 1vmin);
-  margin: 5vh 5px;
-}
-.Card-flipped {
-  border: 3px solid #fb6161;
-}
-.Card-count-flipped {
-  color: #282c34;
-}
-.CardView {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 .DeckView {
   display: flex;
@@ -158,35 +126,4 @@ p {
 }
 .Deck-title {
   margin: 50px 10px;
-}
-.CardView-title {
-  height: 6vh;
-  margin-top: 0px;
-}
-.Navigation {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 75%;
-  margin-top: 3vh;
-}
-.Button-arrow {
-  min-width: 10vh;
-  min-height: 10vh;
-}
-.Icon-arrow {
-  min-width: 6vh;
-  min-height: 6vh;
-  color: white;
-}
-.Icon-arrow:hover {
-  color: #61dafb;
-}
-.Icon-arrow:active {
-  color: #fb6161;
-}
-.None {
-  display: none;
 }
