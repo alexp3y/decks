@@ -1,0 +1,16 @@
+.style {
+  height: 27vh;
+  width: 45vh;
+  margin: 20px 10px;
+  text-align: center;
+  background: url(../../Notecard.jpg);
+  border: 3px solid white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 5vh;
+}
+.style:hover {
+  border: 3px solid var(--color-blue);
+}
+.style:active {
+  border: 3px solid #fb6161;
+}

@@ -168,21 +168,19 @@ function App() {
   };
 
   return (
-    <div className="App" onKeyDown={handleKeyDown}>
-      <div className="Content" tabIndex={0}>
-        <Overview state={state} onExitClick={onCardCloseClick} />
-        <DeckView
-          state={state}
-          onExited={onDeckViewExited}
-          onClick={onCardOpenClick}
-        />
-        <CardView
-          state={state}
-          onExited={onCardViewExited}
-          onBackClick={handleBackClick}
-          onForwardClick={handleForwardClick}
-        />
-      </div>
+    <div className="App" onKeyDown={handleKeyDown} tabIndex={0}>
+      <Overview state={state} onExitClick={onCardCloseClick} />
+      <DeckView
+        state={state}
+        onExited={onDeckViewExited}
+        onClick={onCardOpenClick}
+      />
+      <CardView
+        state={state}
+        onExited={onCardViewExited}
+        onBackClick={handleBackClick}
+        onForwardClick={handleForwardClick}
+      />
     </div>
   );
 }

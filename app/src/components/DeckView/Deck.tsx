@@ -1,6 +1,7 @@
 import { Paper } from '@material-ui/core';
 import React from 'react';
 import { IDeck } from '../../types';
+import styles from './Deck.module.css';
 
 interface Props {
   deck: IDeck;
@@ -10,7 +11,7 @@ interface Props {
 export const Deck: React.FC<Props> = ({ deck, onClick }) => {
   return (
     <Paper
-      className="Deck"
+      className={styles.style}
       id={deck.id.toString()}
       onClick={onClick}
       elevation={3}

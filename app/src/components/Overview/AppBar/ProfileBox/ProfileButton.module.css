@@ -1,0 +1,13 @@
+.button {
+  border: solid 1px var(--color-bg);
+  height: 55px;
+  width: 55px;
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  font-size: 25px;
+}
+.button:active {
+  border: solid 1px var(--color-red-active);
+  background-color: var(--color-red);
+}

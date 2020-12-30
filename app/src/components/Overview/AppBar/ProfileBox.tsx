@@ -8,8 +8,15 @@ interface Props {
 
 export const ProfileBox: React.FC<Props> = ({ state }) => {
   return (
-    <div className="ProfileBox">
+    <div style={styles}>
       <ProfileButton state={state} />
     </div>
   );
+};
+
+const styles = {
+  margin: '0px 28px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 };

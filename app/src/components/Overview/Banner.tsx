@@ -3,7 +3,7 @@ import React from 'react';
 import { TRANSITION_TIME } from '../../constants';
 import { AppState } from '../../types';
 import { CloseButton } from './Banner/CloseButton';
-import { DeckTitle } from './Banner/DeckTitle';
+import { Title } from './Banner/Title';
 
 interface Props {
   state: AppState;
@@ -18,10 +18,18 @@ export const Banner: React.FC<Props> = ({ state, onClick }) => {
       timeout={TRANSITION_TIME}
       unmountOnExit={true}
     >
-      <Box className="Banner" boxShadow={3} borderRadius={1.5}>
-        <DeckTitle state={state} />
+      <Box style={styles} boxShadow={3} borderRadius={1.5}>
+        <Title state={state} />
         <CloseButton onClick={onClick} />
       </Box>
     </Slide>
   );
+};
+
+const styles = {
+  backgroundColor: 'var(--color-red)',
+  height: 'var(--overview-height)',
+  display: 'flex',
+  justifyContent: 'space-between',
+  maxWidth: '45%',
 };

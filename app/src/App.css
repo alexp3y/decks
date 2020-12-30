@@ -1,3 +1,10 @@
+:root {
+  --color-blue: #61dafb;
+  --color-red: #fb6161;
+  --color-red-active: #b84a4a;
+  --color-bg: #282c34;
+  --overview-height: 64px;
+}
 button:focus {
   outline-style: none;
 }
@@ -6,124 +13,16 @@ p {
 }
 .App {
   font-family: 'Indie Flower', cursive;
-}
-.Overview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  max-height: 0px;
-  background-color: #282c34;
-  color: #282c34;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.AppBar {
-  color: #282c34;
-  background-color: #61dafb;
-  width: 100%;
-  height: 64px;
-  display: flex;
-  justify-content: space-between;
-}
-.AppBar-card {
-  width: 275px;
-}
-.Logo {
-  background: url(NC-Logo.jpg);
-  background-size: contain;
-  width: 105px;
-  height: 64px;
-  margin: 0px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.Logo > h3 {
-  font-size: 35px;
-}
-.ProfileBox {
-  margin: 0px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ProfileButton {
-  border: solid 1px #282c34;
-  height: 55px;
-  width: 55px;
-  background-color: white;
-  border-radius: 50%;
-  color: black;
-  font-size: 25px;
-}
-.ProfileButton:active {
-  border: solid 1px #b84a4a;
-  background-color: #fb6161;
-}
-.Banner {
-  background-color: #fb6161;
-  height: 64px;
-  display: flex;
-  justify-content: space-between;
-  max-width: 45%;
-}
-.DeckTitle {
-  font-size: 35px;
-  margin-left: 10px;
-  margin-right: 6px;
-  display: flex;
-  align-items: center;
-}
-.DeckTitle > p {
-  height: 35px;
-  word-break: break-all;
-  padding-bottom: 10px;
-}
-.CloseButton-icon:hover {
-  color: rgba(40, 44, 52, 0.7);
-}
-.Content {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #282c34;
+  background-color: var(--color-bg);
   min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-.DeckView {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
-  align-content: center;
-}
-.Deck {
-  height: 27vh;
-  width: 45vh;
-  margin: 20px 10px;
-  text-align: center;
-  background: url(Notecard.jpg);
-  border: 3px solid white;
-  font-family: 'Indie Flower', cursive;
-  font-size: 5vh;
-}
-.Deck:hover {
-  border: 3px solid #61dafb;
-}
-.Deck:active {
-  border: 3px solid #fb6161;
-}
-.Deck-title {
-  margin: 50px 10px;
 }

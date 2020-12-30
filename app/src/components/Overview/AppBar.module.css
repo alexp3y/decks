@@ -1,0 +1,10 @@
+.bar {
+  background-color: var(--color-blue);
+  width: 100%;
+  height: var(--overview-height);
+  display: flex;
+  justify-content: space-between;
+}
+.minimized {
+  width: 300px;
+}

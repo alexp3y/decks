@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppState } from '../../../../types';
+import styles from './ProfileButton.module.css';
 
 interface Props {
   state: AppState;
@@ -7,9 +8,5 @@ interface Props {
 
 export const ProfileButton: React.FC<Props> = ({ state }) => {
   let userInitials = `${state.user?.firstName[0].toUpperCase()}${state.user?.lastName[0].toUpperCase()}`;
-  return (
-    <div>
-      <button className="ProfileButton">{userInitials}</button>
-    </div>
-  );
+  return <button className={styles.button}>{userInitials}</button>;
 };
