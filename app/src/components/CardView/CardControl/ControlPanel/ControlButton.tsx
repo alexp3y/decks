@@ -1,27 +1,26 @@
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import React from 'react';
+import styles from './ControlButton.module.css';
 
 interface Props {
   action: string;
+  border: boolean;
 }
 
-export const ControlButton: React.FC<Props> = ({ action, children }) => {
+export const ControlButton: React.FC<Props> = ({
+  action,
+  children,
+  border,
+}) => {
   return (
-    <div style={styles}>
-      {children}
-      {action}
+    <div className={styles.container}>
+      <div className={styles.ctrl} style={border ? borderRight : {}}>
+        {children}
+        {action}
+      </div>
     </div>
   );
 };
 
-const styles: CSSProperties = {
+const borderRight = {
   borderRight: '1px solid var(--color-bg)',
-  height: '65px',
-  width: '90px',
-  fontSize: '12px',
-  margin: '5px 0px',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: 'center',
 };

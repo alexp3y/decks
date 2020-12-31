@@ -12,8 +12,10 @@ export const Counter: React.FC<Props> = () => {
 };
 
 const styles: CSSProperties = {
+  borderLeft: '1px solid var(--color-bg)',
   borderRight: '1px solid var(--color-bg)',
-  height: '75px',
+  height: '65px',
+  margin: '5px 0px',
   width: '150px',
   display: 'flex',
   flexDirection: 'column',

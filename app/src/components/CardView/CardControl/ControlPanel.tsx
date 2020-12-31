@@ -12,17 +12,17 @@ interface Props {}
 export const ControlPanel: React.FC<Props> = () => {
   return (
     <Box style={styles} boxShadow={3} borderRadius={5}>
-      <ControlButton action="REVERSE">
+      <ControlButton action="REVERSE" border={true}>
         <LoopIcon style={iconStyles} />
       </ControlButton>
-      <ControlButton action="STARRED">
+      <ControlButton action="STARRED" border={false}>
         <StarsIcon style={iconStyles} />
       </ControlButton>
       <Counter />
-      <ControlButton action="ADD">
+      <ControlButton action="ADD" border={true}>
         <AddCircleIcon style={iconStyles} />
       </ControlButton>
-      <ControlButton action="EDIT">
+      <ControlButton action="EDIT" border={false}>
         <EditIcon style={iconStyles} />
       </ControlButton>
     </Box>
@@ -30,7 +30,6 @@ export const ControlPanel: React.FC<Props> = () => {
 };
 
 const styles = {
-  padding: '2px 0px',
   display: 'flex',
   backgroundColor: 'var(--color-control-panel)',
   color: 'var(--color-bg)',

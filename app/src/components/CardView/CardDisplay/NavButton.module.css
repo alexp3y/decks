@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+.button {
+  background-color: var(--color-blue-active);
+  color: var(--color-bg);
+  width: 18vh;
+  max-width: 105px;
+  height: 60%;
+  margin: 0px 40px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+.button:active {
+  background-color: var(--color-blue);
+}

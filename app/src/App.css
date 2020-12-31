@@ -1,11 +1,11 @@
 :root {
-  --color-blue: #61dafb;
+  /* --color-blue: #61dafb; */
+  --color-blue: #74cde6;
+  --color-blue-active: #a4dff0;
   --color-red: #fb6161;
   --color-red-active: #b84a4a;
   --color-bg: #282c34;
-  /* --color-control-panel: #5b6578; */
   --color-control-panel: #ecf8fc;
-  --color-control-panel-active: #666a72;
   --overview-height: 64px;
 }
 button:focus {
