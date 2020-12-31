@@ -1,4 +1,5 @@
 import { Slide } from '@material-ui/core';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import React from 'react';
 import { TRANSITION_TIME } from '../constants';
 import { AppState } from '../types';
@@ -21,10 +22,18 @@ export const CardView: React.FC<Props> = ({ state, onExited }) => {
       timeout={TRANSITION_TIME}
       unmountOnExit={true}
     >
-      <div className="CardView">
+      <div style={styles}>
         <CardDisplay />
         <CardControl />
       </div>
     </Slide>
   );
+};
+
+const styles: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  height: '100%',
+  fontFamily: 'Raleway',
 };
