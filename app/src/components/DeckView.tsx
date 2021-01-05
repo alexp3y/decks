@@ -1,15 +1,23 @@
 import { Slide } from '@material-ui/core';
 import React, { CSSProperties } from 'react';
-import { AppState } from '../types';
+import { AppState, Command, CommandHandler } from '../types';
 import { Deck } from './DeckView/Deck';
 
 interface Props {
   state: AppState;
-  onClick(e: React.MouseEvent<HTMLDivElement>): void;
-  onExited(): void;
+  onCommand: CommandHandler;
 }
 
-export const DeckView: React.FC<Props> = ({ state, onExited, onClick }) => {
+export const DeckView: React.FC<Props> = ({ state, onCommand }) => {
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    let target = Number((e.target as HTMLElement).id);
+    onCommand(Command.EXIT_DECK_VIEW, { target });
+  };
+
+  const onExited = () => {
+    onCommand(Command.ENTER_CARD_VIEW, {});
+  };
+
   return (
     <Slide
       onExited={onExited}
@@ -19,7 +27,7 @@ export const DeckView: React.FC<Props> = ({ state, onExited, onClick }) => {
       unmountOnExit={true}
     >
       <div style={styles}>
-        {state.decks.map((deck) => {
+        {state.decks!.map((deck) => {
           return <Deck deck={deck} onClick={onClick} />;
         })}
       </div>

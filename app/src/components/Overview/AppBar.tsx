@@ -1,6 +1,6 @@
 import { Box, Slide } from '@material-ui/core';
 import React from 'react';
-import { TRANSITION_TIME } from '../../constants';
+import { VIEW_TRANSITION_TIME } from '../../constants';
 import { AppState } from '../../types';
 import styles from './AppBar.module.css';
 import { Logo } from './AppBar/Logo';
@@ -15,7 +15,7 @@ export const AppBar: React.FC<Props> = ({ state }) => {
     <Slide
       in={state.deckViewOn || state.cardViewOn}
       direction={'left'}
-      timeout={TRANSITION_TIME}
+      timeout={VIEW_TRANSITION_TIME}
       unmountOnExit={true}
     >
       <Box
