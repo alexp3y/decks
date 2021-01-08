@@ -4,18 +4,31 @@ import { NavButton } from './CardDisplay/NavButton';
 import { Notecard } from './CardDisplay/Notecard';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { AppState, Command, CommandHandler } from '../../types';
 
-interface Props {}
+interface Props {
+  state: AppState;
+  onCommand: CommandHandler;
+}
 
-export const CardDisplay: React.FC<Props> = () => {
+export const CardDisplay: React.FC<Props> = ({ state, onCommand }) => {
+  const onClickBack = () => {
+    onCommand(Command.PREV_CARD, {});
+  };
+  const onClickForward = () => {
+    onCommand(Command.NEXT_CARD, {});
+  };
   return (
     <div style={styles}>
       <NavButton>
-        <ArrowBackIosIcon style={iconStyles.left} />
+        <ArrowBackIosIcon style={iconStyles.left} onClick={onClickBack} />
       </NavButton>
-      <Notecard />
+      <Notecard state={state} onCommand={onCommand} />
       <NavButton>
-        <ArrowForwardIosIcon style={iconStyles.right} />
+        <ArrowForwardIosIcon
+          style={iconStyles.right}
+          onClick={onClickForward}
+        />
       </NavButton>
     </div>
   );

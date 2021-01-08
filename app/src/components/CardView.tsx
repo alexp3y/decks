@@ -25,8 +25,8 @@ export const CardView: React.FC<Props> = ({ state, onCommand }) => {
       unmountOnExit={true}
     >
       <div style={styles}>
-        <CardDisplay />
-        <CardControl />
+        <CardDisplay state={state} onCommand={onCommand} />
+        <CardControl state={state} onCommand={onCommand} />
       </div>
     </Slide>
   );

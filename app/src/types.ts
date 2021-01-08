@@ -12,6 +12,7 @@ export type AppState = {
   deckReversed: boolean;
   deckStarred: boolean;
   cardFlipped: boolean;
+  editMode: boolean;
 };
 
 export type CommandHandler = (command: Command, data: CommandData) => void;
@@ -45,6 +46,10 @@ export enum Command {
   FLIP_CARD,
   REVERSE_DECK,
   STAR_DECK,
+  ADD_CARD,
+  EDIT_CARD,
+  SAVE_CARD,
+  DELETE_CARD,
 }
 
 export type ICard = {

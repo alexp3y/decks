@@ -12,7 +12,9 @@ export const handleKeyCommand = async (
   if (state.cardViewOn) {
     switch (key) {
       case 'Escape':
-        return await exitCardView(state);
+        return state.editMode
+          ? await saveCard(state)
+          : await exitCardView(state);
       case 'ArrowRight':
         return await nextCard(state);
       case 'ArrowLeft':
@@ -52,6 +54,14 @@ export const executeCommand: CommandDispatch = async (command, state, data) => {
       return await randomCard(state, data);
     case Command.STAR_CARD:
       return await starCard(state, data);
+    case Command.ADD_CARD:
+      return await addCard(state, data);
+    case Command.EDIT_CARD:
+      return await editCard(state, data);
+    case Command.SAVE_CARD:
+      return await saveCard(state, data);
+    case Command.DELETE_CARD:
+      return await deleteCard(state, data);
     default:
       return state;
   }
@@ -75,6 +85,11 @@ const enterDeckView: CommandFunction = async (state) => {
   state.deckViewOn = true;
   state.cardViewExited = true;
   state.deckViewExited = false;
+  // reset card control state
+  state.cardFlipped = false;
+  state.deckReversed = false;
+  state.deckStarred = false;
+  state.editMode = false;
   return state;
 };
 
@@ -140,5 +155,25 @@ const reverseDeck: CommandFunction = async (state) => {
 
 const starDeck: CommandFunction = async (state) => {
   state.deckStarred = !state.deckStarred;
+  return state;
+};
+
+const addCard: CommandFunction = async (state) => {
+  state.editMode = true;
+  return state;
+};
+
+const editCard: CommandFunction = async (state) => {
+  state.editMode = true;
+  return state;
+};
+
+const saveCard: CommandFunction = async (state) => {
+  state.editMode = false;
+  return state;
+};
+
+const deleteCard: CommandFunction = async (state) => {
+  state.editMode = false;
   return state;
 };

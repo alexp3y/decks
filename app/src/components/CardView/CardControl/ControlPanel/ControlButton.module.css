@@ -1,4 +1,4 @@
-.container {
+.button {
   height: 100%;
   border-radius: 1.5;
 }
@@ -12,10 +12,15 @@
   justify-content: space-between;
   align-items: center;
 }
-.container:hover {
+.button:hover {
   opacity: 0.8;
 }
-.container:active {
+.button:active {
   color: var(--color-control-panel);
   background-color: var(--color-bg);
+}
+.disabledButton {
+  height: 100%;
+  border-radius: 1.5;
+  opacity: 0.5;
 }

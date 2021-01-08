@@ -16,4 +16,5 @@ export const INITIAL_APP_STATE: AppState = {
   deckReversed: false,
   deckStarred: false,
   cardFlipped: false,
+  editMode: false,
 };
