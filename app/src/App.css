@@ -1,10 +1,15 @@
 :root {
-  /* --color-blue: #61dafb; */
   --color-blue: #74cde6;
+  --color-blue-blur: #74cde657;
   --color-blue-active: #a4dff0;
+  --color-blue-active-blur: #a4dff057;
   --color-red: #fb6161;
   --color-red-active: #b84a4a;
-  --color-bg: #282c34;
+  --color-red-blur: #b84a4a81;
+  --color-yellow: #e9d11d;
+  --color-bg: rgb(255, 251, 234);
+  /* --color-bg: #282c34; */
+  --color-bg-blur: #282c347c;
   --color-control-panel: #ecf8fc;
   --overview-height: 64px;
 }

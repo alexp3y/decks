@@ -100,9 +100,10 @@ const exitCardView: CommandFunction = async (state) => {
 
 const enterCardView: CommandFunction = async (state) => {
   state.cards = await getCards(state.activeDeck!.id);
-  if (state.cards.length) {
+  state.activeCards = state.cards;
+  if (state.activeCards.length) {
     state.activeCardIndex = 0;
-    state.activeCard = state.cards[0];
+    state.activeCard = state.activeCards[0];
   }
   state.cardViewOn = true;
   state.deckViewExited = true;
@@ -111,9 +112,9 @@ const enterCardView: CommandFunction = async (state) => {
 };
 
 const nextCard: CommandFunction = async (state) => {
-  if (state.activeCardIndex < state.cards!.length - 1) {
+  if (state.activeCardIndex < state.activeCards!.length - 1) {
     let nextIndex = state.activeCardIndex + 1;
-    state.activeCard = state.cards![nextIndex];
+    state.activeCard = state.activeCards![nextIndex];
     state.activeCardIndex = nextIndex;
     state.cardFlipped = false;
   }
@@ -123,7 +124,7 @@ const nextCard: CommandFunction = async (state) => {
 const previousCard: CommandFunction = async (state) => {
   if (state.activeCardIndex > 0) {
     let prevIndex = state.activeCardIndex - 1;
-    state.activeCard = state.cards![prevIndex];
+    state.activeCard = state.activeCards![prevIndex];
     state.activeCardIndex = prevIndex;
     state.cardFlipped = false;
   }
@@ -131,13 +132,15 @@ const previousCard: CommandFunction = async (state) => {
 };
 
 const flipCard: CommandFunction = async (state) => {
-  state.cardFlipped = !state.cardFlipped;
+  if (state.activeCard) {
+    state.cardFlipped = !state.cardFlipped;
+  }
   return state;
 };
 
 const randomCard: CommandFunction = async (state) => {
-  let randomIndex = Math.floor(Math.random() * state.cards!.length);
-  state.activeCard = state.cards![randomIndex];
+  let randomIndex = Math.floor(Math.random() * state.activeCards!.length);
+  state.activeCard = state.activeCards![randomIndex];
   state.activeCardIndex = randomIndex;
   state.cardFlipped = false;
   return state;
@@ -155,6 +158,11 @@ const reverseDeck: CommandFunction = async (state) => {
 
 const starDeck: CommandFunction = async (state) => {
   state.deckStarred = !state.deckStarred;
+  state.activeCardIndex = 0;
+  state.activeCards = state.deckStarred
+    ? state.cards!.filter((c) => c.starred)
+    : state.cards;
+  state.activeCard = state.activeCards[0];
   return state;
 };
 

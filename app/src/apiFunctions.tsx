@@ -15,3 +15,11 @@ export const getCards = async (id: number): Promise<Array<ICard>> => {
   let res = await axios.get(`http://localhost:8080/cards?deckId=${id}`);
   return res.data;
 };
+
+export const updateCard = async (card: ICard): Promise<ICard> => {
+  let res = await axios.put(
+    `http://localhost:8080/cards?deckId=${card.id}`,
+    card
+  );
+  return res.data;
+};

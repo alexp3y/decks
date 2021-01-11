@@ -120,7 +120,7 @@ const getStarredIconStyles = (reversed: boolean) =>
   reversed
     ? Object.assign(
         {
-          fill: 'goldenrod',
+          fill: 'var(--color-yellow)',
         },
         iconStyles
       )

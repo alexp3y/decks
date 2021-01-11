@@ -1,6 +1,7 @@
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import React from 'react';
 import { NavButton } from './CardDisplay/NavButton';
+import { BlankCard } from './CardDisplay/BlankCard';
 import { Notecard } from './CardDisplay/Notecard';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -23,7 +24,11 @@ export const CardDisplay: React.FC<Props> = ({ state, onCommand }) => {
       <NavButton>
         <ArrowBackIosIcon style={iconStyles.left} onClick={onClickBack} />
       </NavButton>
-      <Notecard state={state} onCommand={onCommand} />
+      {state.activeCard ? (
+        <Notecard state={state} onCommand={onCommand} />
+      ) : (
+        <BlankCard state={state} />
+      )}
       <NavButton>
         <ArrowForwardIosIcon
           style={iconStyles.right}

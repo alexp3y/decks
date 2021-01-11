@@ -1,0 +1,16 @@
+.style {
+  height: 26vh;
+  width: 44vh;
+  margin: 20px 10px;
+  text-align: center;
+  border: dashed 3px var(--color-red-blur);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.style:hover {
+  background-color: var(--color-blue-active-blur);
+}
+.style:active {
+  background-color: var(--color-blue-blur);
+}

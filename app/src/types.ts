@@ -4,9 +4,10 @@ export type AppState = {
   deckViewExited: boolean;
   cardViewOn: boolean;
   cardViewExited: boolean;
-  decks: IDeck[] | undefined;
+  decks: IDeck[];
+  cards: ICard[];
   activeDeck: IDeck | undefined;
-  cards: ICard[] | undefined;
+  activeCards: ICard[] | undefined;
   activeCard: ICard | undefined;
   activeCardIndex: number;
   deckReversed: boolean;

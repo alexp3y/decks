@@ -10,7 +10,7 @@ export const Counter: React.FC<Props> = ({ state }) => {
     (!state.cardFlipped && !state.deckReversed) ||
     (state.cardFlipped && state.deckReversed);
 
-  let count = `${state.activeCardIndex + 1} / ${state.cards!.length}`;
+  let count = `${state.activeCardIndex + 1} / ${state.activeCards!.length}`;
   let side = frontSideUp ? 'FRONT' : 'BACK';
   return (
     <div style={styles}>

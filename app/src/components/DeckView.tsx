@@ -1,6 +1,7 @@
 import { Slide } from '@material-ui/core';
 import React, { CSSProperties } from 'react';
 import { AppState, Command, CommandHandler } from '../types';
+import { BlankDeck } from './DeckView/BlankDeck';
 import { Deck } from './DeckView/Deck';
 
 interface Props {
@@ -30,6 +31,7 @@ export const DeckView: React.FC<Props> = ({ state, onCommand }) => {
         {state.decks!.map((deck) => {
           return <Deck deck={deck} onClick={onClick} />;
         })}
+        <BlankDeck />
       </div>
     </Slide>
   );
