@@ -31,7 +31,16 @@ function App() {
   };
 
   return (
-    <div className="App" onKeyDown={onKeyDown} tabIndex={0}>
+    <div
+      className="App"
+      onKeyDown={onKeyDown}
+      tabIndex={0}
+      style={
+        state.darkMode
+          ? { backgroundColor: 'var(--color-bg)' }
+          : { backgroundColor: 'var(--color-bg-light)' }
+      }
+    >
       <Overview state={state} onCommand={onCommand} />
       <DeckView state={state} onCommand={onCommand} />
       <CardView state={state} onCommand={onCommand} />

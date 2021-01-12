@@ -17,7 +17,7 @@ export const Overview: React.FC<Props> = ({ state, onCommand }) => {
   return (
     <div style={styles}>
       <TitleBanner state={state} onClick={onClick} />
-      <AppBar state={state} />
+      <AppBar state={state} onCommand={onCommand} />
     </div>
   );
 };

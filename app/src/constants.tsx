@@ -3,6 +3,7 @@ import { AppState } from './types';
 export const VIEW_TRANSITION_TIME: number = 500;
 
 export const INITIAL_APP_STATE: AppState = {
+  darkMode: false,
   user: undefined,
   deckViewOn: true,
   deckViewExited: false,

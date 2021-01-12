@@ -74,6 +74,7 @@ const cardStyles: CSSProperties = {
   width: '100vh',
   maxWidth: '600px',
   backgroundImage: `url(${LogoImage})`,
+  backgroundSize: '600px 300px',
   color: 'black',
   position: 'relative',
   display: 'flex',

@@ -1,4 +1,5 @@
 export type AppState = {
+  darkMode: boolean;
   user: IUser | undefined;
   deckViewOn: boolean;
   deckViewExited: boolean;
@@ -51,6 +52,7 @@ export enum Command {
   EDIT_CARD,
   SAVE_CARD,
   DELETE_CARD,
+  TOGGLE_DARK_MODE,
 }
 
 export type ICard = {

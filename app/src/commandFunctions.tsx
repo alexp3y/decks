@@ -1,4 +1,3 @@
-import { exit } from 'process';
 import { getCards, getUser, getUserDecks } from './apiFunctions';
 import { AppState, Command, CommandDispatch, CommandFunction } from './types';
 
@@ -62,6 +61,8 @@ export const executeCommand: CommandDispatch = async (command, state, data) => {
       return await saveCard(state, data);
     case Command.DELETE_CARD:
       return await deleteCard(state, data);
+    case Command.TOGGLE_DARK_MODE:
+      return await toggleDarkMode(state, data);
     default:
       return state;
   }
@@ -183,5 +184,10 @@ const saveCard: CommandFunction = async (state) => {
 
 const deleteCard: CommandFunction = async (state) => {
   state.editMode = false;
+  return state;
+};
+
+const toggleDarkMode: CommandFunction = async (state) => {
+  state.darkMode = !state.darkMode;
   return state;
 };

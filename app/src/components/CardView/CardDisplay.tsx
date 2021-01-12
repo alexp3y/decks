@@ -21,7 +21,7 @@ export const CardDisplay: React.FC<Props> = ({ state, onCommand }) => {
   };
   return (
     <div style={styles}>
-      <NavButton>
+      <NavButton show={state.activeCardIndex > 0 ? true : false}>
         <ArrowBackIosIcon style={iconStyles.left} onClick={onClickBack} />
       </NavButton>
       {state.activeCard ? (
@@ -29,7 +29,14 @@ export const CardDisplay: React.FC<Props> = ({ state, onCommand }) => {
       ) : (
         <BlankCard state={state} />
       )}
-      <NavButton>
+      <NavButton
+        show={
+          state.activeCards!.length &&
+          state.activeCardIndex < state.activeCards!.length - 1
+            ? true
+            : false
+        }
+      >
         <ArrowForwardIosIcon
           style={iconStyles.right}
           onClick={onClickForward}
