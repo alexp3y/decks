@@ -2,16 +2,21 @@
   --color-blue: #74cde6;
   --color-blue-blur: #74cde67a;
   --color-blue-active: #a4dff0;
-  --color-blue-active-blur: #a4dff081;
+  --color-blue-active-blur: #a4dff08a;
   --color-red: #fb6161;
   --color-red-active: #b84a4a;
   --color-red-blur: #b84a4a81;
-  --color-yellow: #e9d11d;
   --color-bg-light: rgb(255, 251, 234);
   --color-bg: #282c34;
   --color-bg-blur: #282c347c;
   --color-control-panel: #ecf8fc;
   --overview-height: 64px;
+  --card-color-WHITE: white;
+  --card-color-BLUE: '#8e93f5';
+  --card-color-GREEN: '#9beb9b';
+  --card-color-ORANGE: '#e0b284';
+  --card-color-YELLOW: '#faf3a2';
+  --card-color-PINK: '#f6c6f7';
 }
 button:focus {
   outline-style: none;

@@ -55,6 +55,15 @@ export enum Command {
   TOGGLE_DARK_MODE,
 }
 
+export enum CardColor {
+  WHITE,
+  BLUE,
+  GREEN,
+  ORANGE,
+  YELLOW,
+  PINK,
+}
+
 export type ICard = {
   id: number;
   deckId: number;
@@ -67,6 +76,7 @@ export type IDeck = {
   id: number;
   userId: number;
   name: string;
+  color: CardColor;
   cards: ICard[];
 };
 

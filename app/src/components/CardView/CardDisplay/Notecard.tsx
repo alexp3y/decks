@@ -1,10 +1,21 @@
 import React, { CSSProperties } from 'react';
-import NotecardImage from '../../../Notecard.jpg';
-import LogoImage from '../../../NC-Logo.jpg';
 import { AppState, Command, CommandHandler } from '../../../types';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import StarIcon from '@material-ui/icons/Star';
 import IconButton from '@material-ui/core/IconButton';
+import { CardColor } from '../../../types';
+import PinkCardImageFront from '../../../images/pink.png';
+import PinkCardImageBack from '../../../images/pink-back.png';
+import BlueCardImageFront from '../../../images/blue.png';
+import BlueCardImageBack from '../../../images/blue-back.png';
+import GreenCardImageFront from '../../../images/green.png';
+import GreenCardImageBack from '../../../images/green-back.png';
+import OrangeCardImageFront from '../../../images/orange.png';
+import OrangeCardImageBack from '../../../images/orange-back.png';
+import WhiteCardImageFront from '../../../images/white.png';
+import WhiteCardImageBack from '../../../images/white-back.png';
+import YellowCardImageFront from '../../../images/yellow.png';
+import YellowCardImageBack from '../../../images/yellow-back.png';
 
 interface Props {
   state: AppState;
@@ -29,7 +40,10 @@ export const Notecard: React.FC<Props> = ({ state, onCommand }) => {
   return (
     <div
       id={NOTECARD_ID}
-      style={Object.assign(getHighlightStyle(frontSideUp), cardStyles)}
+      style={Object.assign(
+        getDynamicCardStyles(state.activeDeck!.color, frontSideUp),
+        cardStyles
+      )}
       onClick={onCardClick}
     >
       <IconButton onClick={onStarClick} style={starButtonStyles}>
@@ -64,16 +78,47 @@ const starButtonStyles: CSSProperties = {
   right: '5px',
 };
 
-const getHighlightStyle = (frontSideUp: boolean) =>
-  frontSideUp
+const getDynamicCardStyles = (color: number, frontSideUp: boolean) => {
+  const border = frontSideUp
     ? { border: '2px solid var(--color-blue)' }
     : { border: '2px solid var(--color-red)' };
+  const backgroundImage = getCardImage(color, frontSideUp);
+  return Object.assign(border, backgroundImage);
+};
+
+const getCardImage = (color: CardColor, frontSideUp: boolean) => {
+  switch (color) {
+    case CardColor.WHITE:
+      return frontSideUp
+        ? { backgroundImage: `url(${WhiteCardImageFront})` }
+        : { backgroundImage: `url(${WhiteCardImageBack})` };
+    case CardColor.BLUE:
+      return frontSideUp
+        ? { backgroundImage: `url(${BlueCardImageFront})` }
+        : { backgroundImage: `url(${BlueCardImageBack})` };
+    case CardColor.YELLOW:
+      return frontSideUp
+        ? { backgroundImage: `url(${YellowCardImageFront})` }
+        : { backgroundImage: `url(${YellowCardImageBack})` };
+    case CardColor.ORANGE:
+      return frontSideUp
+        ? { backgroundImage: `url(${OrangeCardImageFront})` }
+        : { backgroundImage: `url(${OrangeCardImageBack})` };
+    case CardColor.PINK:
+      return frontSideUp
+        ? { backgroundImage: `url(${PinkCardImageFront})` }
+        : { backgroundImage: `url(${PinkCardImageBack})` };
+    case CardColor.GREEN:
+      return frontSideUp
+        ? { backgroundImage: `url(${GreenCardImageFront})` }
+        : { backgroundImage: `url(${GreenCardImageBack})` };
+  }
+};
 
 const cardStyles: CSSProperties = {
   zIndex: 9999,
   width: '100vh',
   maxWidth: '600px',
-  backgroundImage: `url(${LogoImage})`,
   backgroundSize: '600px 300px',
   color: 'black',
   position: 'relative',

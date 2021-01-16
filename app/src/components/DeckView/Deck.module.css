@@ -3,13 +3,13 @@
   width: 45vh;
   margin: 20px 10px;
   text-align: center;
-  background: url(../../Notecard.jpg);
-  border: 3px solid white;
+  border: 2px solid rgba(255, 255, 255, 0);
+  background-size: cover;
   font-size: 5vh;
 }
 .style:hover {
-  border: 3px solid var(--color-blue);
+  border: 2px solid var(--color-blue);
 }
 .style:active {
-  border: 3px solid #fb6161;
+  border: 2px solid #fb6161;
 }
