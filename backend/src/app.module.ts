@@ -6,7 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Deck } from './model/deck.entity';
 import { Card } from './model/card.entity';
-import { DecksController } from './controllers/deck.controller';
+import { DecksController } from './controllers/decks.controller';
 import { DecksService } from './services/decks.service';
 import { CardsService } from './services/cards.service';
 import { CardsController } from './controllers/cards.controller';

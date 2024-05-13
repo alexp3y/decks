@@ -7,6 +7,9 @@ const logger = new Logger('Main=>bootstrap()');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: '*',
+  });
   const configService = app.get(ConfigService);
   logger.log('starting api');
   const host = configService.get('DB_HOST', 5002);

@@ -1,0 +1,15 @@
+.style {
+  height: 27vh;
+  width: 45vh;
+  /* margin: 20px 10px; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.style:hover {
+  background-color: var(--color-blue-active-blur);
+}
+.style:active {
+  background-color: var(--color-blue-blur);
+}

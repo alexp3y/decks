@@ -1,33 +1,29 @@
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import ProTip from './ProTip';
-import ColorModeSwitch from './components/ColorModeSwitch';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import OverviewScreen from './components/OverviewScreen';
+import DeckScreen from './components/DeckScreen';
+import { DeckProvider } from './DeckContext';
+import EditDeckScreen from './components/EditDeckScreen';
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI Vite.js example in TypeScript
-        </Typography>
-        <ProTip />
-        <Copyright />
-        <ColorModeSwitch />
-      </Box>
-    </Container>
+    <DeckProvider>
+      <Routes>
+        <Route
+          element={
+            // <ProtectedRoute>
+            <Layout />
+            // </ProtectedRoute>
+            // <Navbar />
+          }
+        >
+          <Route path="/">
+            <Route index element={<OverviewScreen />} />
+            <Route path="/:deckId" element={<DeckScreen />} />
+            <Route path="/:deckId/edit" element={<EditDeckScreen />} />
+          </Route>
+        </Route>
+      </Routes>
+    </DeckProvider>
   );
 }

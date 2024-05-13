@@ -1,0 +1,27 @@
+.button {
+  height: 100%;
+  border-radius: 1.5;
+}
+.ctrl {
+  height: 65px;
+  width: 90px;
+  font-size: 12px;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.button:active {
+  color: var(--color-control-panel);
+  background-color: var(--color-bg);
+}
+.disabledButton {
+  height: 100%;
+  border-radius: 1.5;
+  opacity: 0.5;
+}

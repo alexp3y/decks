@@ -18,13 +18,15 @@ export class DecksService {
     return this.decksRepo.findOne({
       where: { id },
       relations: {
-        cards: true,
+        // cards: true,
       },
     });
   }
 
   async createOne(createDto: CreateDeckDto): Promise<Deck> {
-    const created = await this.decksRepo.save(createDto);
+    const created = await this.decksRepo.save(
+      Object.assign(createDto, new Deck()),
+    );
     return this.findOne(created.id);
   }
 }
