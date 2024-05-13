@@ -8,8 +8,9 @@ export const BackButton: React.FC = () => {
   const location = useLocation();
 
   const handleBackClick = () => {
-    console.log('path is' + location.pathname.substring(-5));
-    navigate('.', { relative: 'path' });
+    const path = location.pathname.substring(0, location.pathname.length - 5);
+    console.log('path is: ' + path);
+    navigate(path);
   };
 
   return (

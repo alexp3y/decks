@@ -3,13 +3,13 @@ import { Box, Fab, Typography } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import { TransitionGroup } from 'react-transition-group';
-import { useDecks } from '../../DeckContext';
+import { useDeckData } from '../../DeckDataContext';
 import { ICard } from '../../services/cards.service';
 import { cardId } from '../../utils/card-id';
 import EditCardListItem from './EditCardListItem';
 
 export default function EditCardList() {
-  const decks = useDecks();
+  const deckData = useDeckData();
 
   const handleAddCard = () => {
     const newCard = {
@@ -49,22 +49,22 @@ export default function EditCardList() {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-start',
           alignItems: 'center',
-          m: 1,
+          my: 1,
           height: '70px',
           px: 1,
           gap: 2,
         }}
       >
-        <Typography sx={{}} variant="h5">
-          New Card
-        </Typography>
         {addCardButton}
+        <Typography sx={{}} variant="h5">
+          Add Card
+        </Typography>
       </Box>
       <List>
         <TransitionGroup>
-          {decks.cards.map((item) => (
+          {deckData.cards.map((item) => (
             <Collapse key={item.id}>
               <EditCardListItem onRemoveCard={handleRemoveCard} item={item} />
             </Collapse>

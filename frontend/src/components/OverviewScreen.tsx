@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { IDeck, decksService } from '../services/decks.service';
 import { BlankDeck } from './OverviewScreen/BlankDeck';
 import { Deck } from './OverviewScreen/Deck';
+import { useDeckData } from '../DeckDataContext';
 
 const OverviewScreen: React.FC = () => {
+  const deckData = useDeckData();
   const [decks, setDecks] = useState<IDeck[]>();
 
   useEffect(() => {
+    if (deckData.deck) deckData.closeDeck();
     decksService.findAll().then((d) => {
       setDecks(d);
     });

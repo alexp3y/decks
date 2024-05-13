@@ -4,16 +4,16 @@ import EditDeckColor from './EditDeckScreen/EditDeckColor';
 import { Box, Container } from '@mui/material';
 import EditDeckDetails from './EditDeckScreen/EditDeckDetails';
 import { useParams } from 'react-router-dom';
-import { useDecks } from '../DeckContext';
+import { useDeckData } from '../DeckDataContext';
 
 const EditDeckScreen: React.FC = () => {
   const { deckId } = useParams();
-  const decks = useDecks();
+  const deckData = useDeckData();
 
   useEffect(() => {
-    if (!decks.deck) {
+    if (!deckData.deck) {
       //
-      decks.openDeck(deckId!);
+      deckData.openDeck(deckId!);
     }
   }, []);
   return (
@@ -33,7 +33,7 @@ const EditDeckScreen: React.FC = () => {
       }}
       maxWidth="lg"
     >
-      {decks.deck ? (
+      {deckData.deck ? (
         <>
           <Box
             sx={{

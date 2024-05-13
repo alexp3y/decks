@@ -1,9 +1,9 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react';
-import { useDecks } from '../../DeckContext';
+import { useDeckData } from '../../DeckDataContext';
 
 const EditDeckDetails: React.FC = () => {
-  const decks = useDecks();
+  const deckData = useDeckData();
   return (
     <Box sx={{ m: 1, height: '70px' }}>
       <TextField
@@ -11,7 +11,7 @@ const EditDeckDetails: React.FC = () => {
         variant="outlined"
         sx={{ width: '100%' }}
         inputProps={{ style: { fontSize: '30px' } }}
-        value={decks.deck?.name}
+        value={deckData.deck?.name}
       />
     </Box>
   );

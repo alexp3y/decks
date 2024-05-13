@@ -2,20 +2,20 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDecks } from '../../../DeckContext';
+import { useDeckData } from '../../../DeckDataContext';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const CloseButton: React.FC = () => {
   const navigate = useNavigate();
-  const decks = useDecks();
+  const deckData = useDeckData();
   const location = useLocation();
 
   const handleCloseClick = () => {
     if (location.pathname.includes('/edit')) {
       navigate('.');
     } else {
-      decks.closeDeck();
       navigate('/');
+      deckData.closeDeck();
     }
   };
 

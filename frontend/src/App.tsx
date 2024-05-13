@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import OverviewScreen from './components/OverviewScreen';
 import DeckScreen from './components/DeckScreen';
-import { DeckProvider } from './DeckContext';
+import { DeckProvider } from './DeckDataContext';
 import EditDeckScreen from './components/EditDeckScreen';
 
 export default function App() {

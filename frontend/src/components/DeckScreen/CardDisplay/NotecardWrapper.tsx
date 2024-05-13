@@ -1,87 +1,81 @@
-import StarIcon from '@mui/icons-material/Star';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import { Box, Paper, Slide, Typography, useTheme } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import { Box, Grow, Slide } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDecks } from '../../../DeckContext';
 import { ICard } from '../../../services/cards.service';
-import { getCardImage } from '../../../utils/get-card-image';
+import { Notecard } from './Notecard';
 
 interface Props {
   card: ICard;
   flipped: boolean;
+  cardIndex: number;
 }
 
 export const NotecardWrapper: React.FC<Props> = ({
-  card: initialCard,
-  flipped,
+  card: nextCard,
+  flipped: nextCardFlipped,
+  cardIndex: nextCardIndex,
 }) => {
-  const decks = useDecks();
-  const theme = useTheme();
-  const [card, setCard] = useState(initialCard);
-  const [cardIn, setCardIn] = useState(true);
-
-  const onStarClick = () => {};
+  const [lastCard, setLastCard] = useState(nextCard);
+  const [lastCardFlipped, setLastCardFlipped] = useState(nextCardFlipped);
+  const [nextCardOut, setNextCardOut] = useState(false);
+  const [prevCardIn, setPrevCardIn] = useState(false);
+  const [lastCardIndex, setLastCardIndex] = useState(0);
 
   useEffect(() => {
-    setCardIn(false);
-    setCard(initialCard);
-    setTimeout(() => {
-      setCardIn(true);
-    }, 300);
-  }, [initialCard]);
+    if (lastCardIndex < nextCardIndex) {
+      setNextCardOut(true);
+      setTimeout(() => {
+        setNextCardOut(false);
+        setLastCard(nextCard);
+        setLastCardFlipped(nextCardFlipped);
+        setLastCardIndex(nextCardIndex);
+      }, 200);
+    } else if (lastCardIndex > nextCardIndex) {
+      setPrevCardIn(true);
+      setTimeout(() => {
+        setPrevCardIn(false);
+        setLastCard(nextCard);
+        setLastCardFlipped(nextCardFlipped);
+        setLastCardIndex(nextCardIndex);
+      }, 200);
+    }
+  }, [nextCard]);
+
+  useEffect(() => {
+    if (nextCardIndex === lastCardIndex) {
+      setLastCardFlipped(nextCardFlipped);
+    }
+  }, [nextCardFlipped]);
 
   return (
-    <Slide
-      in={cardIn}
-      appear={false}
-      timeout={{
-        enter: 0,
-        exit: 300,
-      }}
-      direction="right"
-    >
-      <Paper
-        sx={{
-          ...getCardImage(decks.deck!.color, flipped),
-          width: '85vh',
-          height: '50vh',
-          backgroundSize: 'cover',
-          position: 'relative',
-          boxShadow: 3,
-          backgroundRepeat: 'no-repeat',
+    <Box sx={{ position: 'relative' }}>
+      <Notecard card={nextCard} flipped={nextCardFlipped} />
+      {/* NEXT CARD SLIDES OFF TO */}
+      <Slide
+        in={!nextCardOut}
+        // appear={false}
+        timeout={{
+          enter: 0,
+          exit: 200,
         }}
+        direction="left"
       >
-        <Box
-          sx={{
-            height: '101%',
-            width: '100%',
-            placeContent: 'center',
-            textAlign: 'center',
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? 'rgba(0,0,0,.5)'
-                : 'rgba(255,255,255,.3)',
-          }}
-        >
-          {cardIn && (
-            <Typography sx={{ mb: 3, whiteSpace: 'pre-line' }} variant="h3">
-              {flipped ? card.back : card.front}
-            </Typography>
-          )}
-          <IconButton
-            size="large"
-            sx={{ position: 'absolute', top: 0, right: 0, mt: 0.5, mr: 1 }}
-            onClick={onStarClick}
-          >
-            {card.starred ? (
-              <StarIcon fontSize="large" />
-            ) : (
-              <StarOutlineIcon fontSize="large" />
-            )}
-          </IconButton>
+        <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+          <Notecard card={lastCard} flipped={lastCardFlipped} />
         </Box>
-      </Paper>
-    </Slide>
+      </Slide>
+      {/* PREVIOUS CARD SLIDE IN FROM RIGHT */}
+      <Slide
+        in={prevCardIn}
+        timeout={{
+          enter: 200,
+          exit: 0,
+        }}
+        direction="left"
+      >
+        <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+          <Notecard card={nextCard} flipped={nextCardFlipped} />
+        </Box>
+      </Slide>
+    </Box>
   );
 };

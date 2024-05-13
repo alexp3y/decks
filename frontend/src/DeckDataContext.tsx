@@ -2,7 +2,7 @@ import { ReactNode, createContext, useContext, useState } from 'react';
 import { ICard, cardsService } from './services/cards.service';
 import { IDeck, decksService } from './services/decks.service';
 
-interface IDeckContext {
+interface IDeckDataContext {
   deck: IDeck | null;
   cards: ICard[];
   // addNewCard: () => void;
@@ -11,7 +11,7 @@ interface IDeckContext {
   updateCard: () => void;
 }
 
-const DeckContext = createContext<IDeckContext>({} as IDeckContext);
+const DeckDataContext = createContext<IDeckDataContext>({} as IDeckDataContext);
 
 export const DeckProvider = ({ children }: { children: ReactNode }) => {
   const [deck, setDeck] = useState<IDeck | null>(null);
@@ -33,7 +33,7 @@ export const DeckProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <DeckContext.Provider
+    <DeckDataContext.Provider
       value={{
         cards,
         deck,
@@ -43,8 +43,8 @@ export const DeckProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-    </DeckContext.Provider>
+    </DeckDataContext.Provider>
   );
 };
 
-export const useDecks = () => useContext(DeckContext);
+export const useDeckData = () => useContext(DeckDataContext);

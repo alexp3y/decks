@@ -2,7 +2,6 @@ import {
   Box,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Paper,
   Radio,
   RadioGroup,
@@ -11,15 +10,15 @@ import {
 } from '@mui/material';
 import { amber, green, indigo, orange, pink } from '@mui/material/colors';
 import React, { useState } from 'react';
+import { useDeckData } from '../../DeckDataContext';
 import { DeckColor } from '../../services/decks.service';
 import { getCardImage } from '../../utils/get-card-image';
-import { useDecks } from '../../DeckContext';
 
 interface Props {}
 
 const EditDeckColor: React.FC<Props> = () => {
-  const decks = useDecks();
-  const [color, setColor] = useState<DeckColor>(decks.deck!.color);
+  const deckData = useDeckData();
+  const [color, setColor] = useState<DeckColor>(deckData.deck!.color);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor((event.target as HTMLInputElement).value as DeckColor);
   };

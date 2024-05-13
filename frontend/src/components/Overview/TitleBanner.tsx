@@ -2,19 +2,19 @@ import { SxProps, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Slide from '@mui/material/Slide';
 import React from 'react';
-import { useDecks } from '../../DeckContext';
+import { useDeckData } from '../../DeckDataContext';
 import { CloseButton } from './TitleBanner/CloseButton';
 import { useLocation } from 'react-router-dom';
 import { BackButton } from './TitleBanner/BackButton';
 
 export const TitleBanner: React.FC = () => {
-  const decks = useDecks();
+  const deckData = useDeckData();
   const location = useLocation();
 
   return (
-    <Slide in={!!decks.deck} direction="down" timeout={500}>
+    <Slide in={!!deckData.deck} direction="down" timeout={500}>
       <Box sx={styles}>
-        {decks.deck &&
+        {deckData.deck &&
           (location.pathname.includes('/edit') ? (
             <>
               <BackButton />
@@ -22,7 +22,7 @@ export const TitleBanner: React.FC = () => {
             </>
           ) : (
             <>
-              <Typography variant="h4">{decks.deck!.name}</Typography>
+              <Typography variant="h4">{deckData.deck!.name}</Typography>
               <CloseButton />
             </>
           ))}
