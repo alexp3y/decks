@@ -1,16 +1,17 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { Deck } from './deck.entity';
 import { CardType } from './enum/card-type.enum';
 
 @Entity({ name: 'card' })
 export class Card {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ name: 'id', type: 'varchar', length: '12' })
   readonly id: string;
 
   @Column({
@@ -18,13 +19,14 @@ export class Card {
     enum: CardType,
     enumName: 'card_type_enum',
     nullable: false,
+    default: CardType.GENERIC,
   })
   type: CardType;
 
-  @Column()
+  @Column({ nullable: true })
   front: string;
 
-  @Column()
+  @Column({ nullable: true })
   back: string;
 
   @Column({ default: false })
@@ -32,6 +34,13 @@ export class Card {
 
   @Column({ default: 0 })
   color: number;
+
+  @CreateDateColumn({
+    name: 'created_on',
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdOn: Date;
 
   @Column({ name: 'deck_id' })
   readonly deckId: string;

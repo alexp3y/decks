@@ -4,7 +4,7 @@ import { customAlphabet } from 'nanoid';
 const alphabet =
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
 
-const nanoid = customAlphabet(alphabet, 6);
+const nanoid = customAlphabet(alphabet, 12);
 
 export function cardId(): string {
   return nanoid();

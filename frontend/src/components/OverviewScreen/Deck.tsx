@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IDeck } from '../../services/decks.service';
 import { getCardImage } from '../../utils/get-card-image';
 import styles from './Deck.module.css';
+import { CARD_DARK_FADE, CARD_LIGHT_FADE } from '../../constants';
 interface Props {
   deck: IDeck;
 }
@@ -50,8 +51,8 @@ export const Deck: React.FC<Props> = ({ deck }) => {
             placeContent: 'center',
             backgroundColor:
               theme.palette.mode === 'dark'
-                ? 'rgba(0,0,0,0.44)'
-                : 'transparent',
+                ? `rgba(0,0,0,${CARD_DARK_FADE})`
+                : `rgba(255,255,255,${CARD_LIGHT_FADE})`,
           }}
         >
           <Typography variant="h5" sx={{ mb: 2 }}>

@@ -4,6 +4,7 @@ import { CreateCardDto } from 'src/controllers/dto/create-card.dto';
 import { UpdateCardDto } from 'src/controllers/dto/update-card.dto';
 import { Card } from 'src/model/card.entity';
 import { CardType } from 'src/model/enum/card-type.enum';
+import { shortId } from 'src/utils/short-id.util';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -30,6 +31,9 @@ export class CardsService {
   }
 
   async createOne(createDto: CreateCardDto): Promise<Card> {
+    if (!createDto.id) {
+      createDto.id = shortId();
+    }
     const created = await this.cardsRepo.save({
       ...createDto,
       type: createDto.type as CardType,
@@ -39,6 +43,9 @@ export class CardsService {
 
   async update(id: string, updates: UpdateCardDto): Promise<Card> {
     const existing = await this.findOne(id);
+    if (!existing) {
+      throw new Error('Card Not Found');
+    }
     const updated = await this.cardsRepo.save({
       ...existing,
       type: updates.type as CardType,
@@ -46,5 +53,9 @@ export class CardsService {
       back: updates.back,
     });
     return updated;
+  }
+
+  async deleteOne(id: string) {
+    await this.cardsRepo.delete(id);
   }
 }

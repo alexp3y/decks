@@ -1,5 +1,11 @@
 import { shortId } from 'src/utils/short-id.util';
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+} from 'typeorm';
 import { Card } from './card.entity';
 
 @Entity({ name: 'deck' })
@@ -15,6 +21,13 @@ export class Deck {
 
   @Column({ default: 'DEFAULT' })
   color: string;
+
+  @CreateDateColumn({
+    name: 'created_on',
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdOn: Date;
 
   @OneToMany(() => Card, (card: Card) => card.deck)
   cards: Card[];

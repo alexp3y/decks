@@ -1,8 +1,17 @@
-import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Deck } from 'src/model/deck.entity';
+import { CardsService } from 'src/services/cards.service';
 import { DecksService } from 'src/services/decks.service';
 import { CreateDeckDto } from './dto/create-deck.dto';
-import { CardsService } from 'src/services/cards.service';
+import { UpdateDeckDto } from './dto/update-deck.dto';
 
 @Controller('decks')
 export class DecksController {
@@ -20,6 +29,12 @@ export class DecksController {
   async create(@Body() createDto: CreateDeckDto) {
     Logger.debug(createDto);
     return await this.decksService.createOne(createDto);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id, @Body() updateDto: UpdateDeckDto) {
+    Logger.debug(updateDto);
+    return await this.decksService.update(id, updateDto);
   }
 
   @Get(':id')

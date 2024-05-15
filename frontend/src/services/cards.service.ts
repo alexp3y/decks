@@ -4,6 +4,8 @@ export type ICard = {
   back: string;
   starred: boolean;
   type: CardType;
+  deckId: string;
+  createdOn: Date;
 };
 
 export enum CardType {
@@ -31,7 +33,26 @@ const update = async (id: string, updates: Partial<ICard>) => {
   return res.json();
 };
 
+const create = async (toCreate: ICard) => {
+  const res = await fetch(`http://localhost:5001/cards`, {
+    method: 'POST',
+    body: JSON.stringify(toCreate),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+};
+
+const deleteOne = async (id: string) => {
+  await fetch(`http://localhost:5001/cards/${id}`, {
+    method: 'DELETE',
+  });
+};
+
 export const cardsService = {
+  create,
   findByDeck,
   update,
+  deleteOne,
 };

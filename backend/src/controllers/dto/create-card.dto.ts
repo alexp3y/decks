@@ -2,6 +2,9 @@ import { IsEnum, IsString } from 'class-validator';
 import { CardType } from 'src/model/enum/card-type.enum';
 
 export class CreateCardDto {
+  @IsString()
+  id: string;
+
   @IsEnum(CardType)
   type: string;
 

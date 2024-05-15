@@ -9,19 +9,17 @@ import {
   useTheme,
 } from '@mui/material';
 import { amber, green, indigo, orange, pink } from '@mui/material/colors';
-import React, { useState } from 'react';
-import { useDeckData } from '../../DeckDataContext';
+import React from 'react';
 import { DeckColor } from '../../services/decks.service';
 import { getCardImage } from '../../utils/get-card-image';
+import { CARD_DARK_FADE, CARD_LIGHT_FADE } from '../../constants';
 
-interface Props {}
+interface Props {
+  color: DeckColor;
+  onColorChange: (e) => void;
+}
 
-const EditDeckColor: React.FC<Props> = () => {
-  const deckData = useDeckData();
-  const [color, setColor] = useState<DeckColor>(deckData.deck!.color);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor((event.target as HTMLInputElement).value as DeckColor);
-  };
+const EditDeckColor: React.FC<Props> = ({ color, onColorChange }) => {
   const theme = useTheme();
   return (
     <Box
@@ -47,12 +45,14 @@ const EditDeckColor: React.FC<Props> = () => {
             height: '101%',
             width: '100%',
             backgroundColor:
-              theme.palette.mode === 'dark' ? 'rgba(0,0,0,.4)' : '',
+              theme.palette.mode === 'dark'
+                ? `rgba(0,0,0,${CARD_DARK_FADE})`
+                : `rgba(255,255,255,${CARD_LIGHT_FADE})`,
           }}
         />
       </Paper>
       <FormControl>
-        <RadioGroup row value={color} onChange={handleChange}>
+        <RadioGroup row value={color} onChange={onColorChange}>
           <FormControlLabel
             sx={{
               mx: '12px',

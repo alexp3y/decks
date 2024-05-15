@@ -10,28 +10,41 @@ import React, { useState } from 'react';
 import { ICard, cardsService } from '../../services/cards.service';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { debounceAsync } from '../../utils/debounce-async';
+import { DeckSyncStatus, useDeckData } from '../../DeckDataContext';
 
 interface RenderItemOptions {
   item: ICard;
   onRemoveCard: (id: string) => void;
 }
 
-const sendRequest = (card: ICard) => {
+const updateCard = (card: ICard, callback) => {
+  callback(DeckSyncStatus.LOADING);
   return cardsService.update(card.id, card);
 };
-const debouncedSendRequest = debounceAsync(sendRequest, 1500);
+
+const debouncedUpdateCard = debounceAsync(updateCard, 1000);
 
 const EditCardListItem: React.FC<RenderItemOptions> = ({
   item,
   onRemoveCard,
 }) => {
+  const deckData = useDeckData();
   const [card, setCard] = useState(item);
+
+  const updateSyncStatus = () => {
+    deckData.setSyncStatus(DeckSyncStatus.SYNCED);
+  };
 
   const onChangeContent = async (e) => {
     if (e.target.value.split(/\n/).length < 4) {
+      if (deckData.syncStatus === DeckSyncStatus.SYNCED) {
+        deckData.setSyncStatus(DeckSyncStatus.CHANGED);
+      }
       card[e.target.id] = e.target.value;
       setCard({ ...card });
-      console.log(await debouncedSendRequest(card));
+      debouncedUpdateCard(card, deckData.setSyncStatus).then(() => {
+        updateSyncStatus();
+      });
     }
   };
 

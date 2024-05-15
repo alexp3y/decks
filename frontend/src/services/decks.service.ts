@@ -37,8 +37,27 @@ const createOne = async (name: string) => {
   return res.json();
 };
 
+const update = async (id: string, updates: Partial<IDeck>): Promise<IDeck> => {
+  const res = await fetch(`http://localhost:5001/decks/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updates),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+};
+
+const deleteOne = async (id: string) => {
+  await fetch(`http://localhost:5001/decks/${id}`, {
+    method: 'DELETE',
+  });
+};
+
 export const decksService = {
   findAll,
   findOne,
   createOne,
+  update,
+  deleteOne,
 };

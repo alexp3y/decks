@@ -4,24 +4,18 @@ import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import { TransitionGroup } from 'react-transition-group';
 import { useDeckData } from '../../DeckDataContext';
-import { ICard } from '../../services/cards.service';
-import { cardId } from '../../utils/card-id';
+import SyncIndicator from './SyncIndicator';
 import EditCardListItem from './EditCardListItem';
 
 export default function EditCardList() {
   const deckData = useDeckData();
 
   const handleAddCard = () => {
-    const newCard = {
-      id: cardId(),
-    } as ICard;
-    if (newCard) {
-      setCards((prev) => [newCard, ...prev]);
-    }
+    deckData.addCard();
   };
 
   const handleRemoveCard = (id: string) => {
-    setCards((prev) => [...prev.filter((c) => c.id !== id)]);
+    deckData.removeCard(id);
   };
 
   const addCardButton = (
@@ -49,20 +43,21 @@ export default function EditCardList() {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          my: 1,
           height: '70px',
-          px: 1,
-          gap: 2,
+          px: 2,
         }}
       >
-        {addCardButton}
-        <Typography sx={{}} variant="h5">
-          Add Card
-        </Typography>
+        <SyncIndicator />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography sx={{}} variant="h5">
+            Add Card
+          </Typography>
+          {addCardButton}
+        </Box>
       </Box>
-      <List>
+      <List sx={{ p: 0 }}>
         <TransitionGroup>
           {deckData.cards.map((item) => (
             <Collapse key={item.id}>

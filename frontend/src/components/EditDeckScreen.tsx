@@ -1,10 +1,9 @@
+import { Container } from '@mui/material';
 import React, { useEffect } from 'react';
-import EditCardList from './EditDeckScreen/EditCardList';
-import EditDeckColor from './EditDeckScreen/EditDeckColor';
-import { Box, Container } from '@mui/material';
-import EditDeckDetails from './EditDeckScreen/EditDeckDetails';
 import { useParams } from 'react-router-dom';
 import { useDeckData } from '../DeckDataContext';
+import EditCardList from './EditDeckScreen/EditCardList';
+import EditDeckDetails from './EditDeckScreen/EditDeckDetails';
 
 const EditDeckScreen: React.FC = () => {
   const { deckId } = useParams();
@@ -12,7 +11,6 @@ const EditDeckScreen: React.FC = () => {
 
   useEffect(() => {
     if (!deckData.deck) {
-      //
       deckData.openDeck(deckId!);
     }
   }, []);
@@ -35,17 +33,7 @@ const EditDeckScreen: React.FC = () => {
     >
       {deckData.deck ? (
         <>
-          <Box
-            sx={{
-              width: {
-                md: '40%',
-              },
-              height: '100%',
-            }}
-          >
-            <EditDeckDetails />
-            <EditDeckColor />
-          </Box>
+          <EditDeckDetails />
           <EditCardList />
         </>
       ) : (

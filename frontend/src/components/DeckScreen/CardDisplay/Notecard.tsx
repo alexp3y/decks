@@ -6,6 +6,7 @@ import React from 'react';
 import { useDeckData } from '../../../DeckDataContext';
 import { ICard } from '../../../services/cards.service';
 import { getCardImage } from '../../../utils/get-card-image';
+import { CARD_DARK_FADE, CARD_LIGHT_FADE } from '../../../constants';
 
 interface Props {
   card: ICard;
@@ -38,8 +39,8 @@ export const Notecard: React.FC<Props> = ({ card, flipped }) => {
           textAlign: 'center',
           backgroundColor:
             theme.palette.mode === 'dark'
-              ? 'rgba(0,0,0,.5)'
-              : 'rgba(255,255,255,.3)',
+              ? `rgba(0,0,0,${CARD_DARK_FADE})`
+              : `rgba(255,255,255,${CARD_LIGHT_FADE})`,
         }}
       >
         <Typography sx={{ mb: 3, whiteSpace: 'pre-line' }} variant="h3">

@@ -27,6 +27,7 @@ const OverviewScreen: React.FC = () => {
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
+        height: '100%',
         width: '100vw',
         p: 5,
         flexGrow: 0,
@@ -41,7 +42,10 @@ const OverviewScreen: React.FC = () => {
           },
           width: '90%',
           flexWrap: 'wrap',
-          gap: 4,
+          gap: {
+            xs: 4,
+            md: 6,
+          },
         }}
       >
         <BlankDeck onClick={handleNewDeckClick} />
