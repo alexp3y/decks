@@ -51,6 +51,7 @@ export class CardsService {
       type: updates.type as CardType,
       front: updates.front,
       back: updates.back,
+      starred: updates.starred,
     });
     return updated;
   }

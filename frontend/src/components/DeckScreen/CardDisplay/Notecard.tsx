@@ -2,22 +2,39 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { Box, Paper, Typography, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDeckData } from '../../../DeckDataContext';
+import { CARD_DARK_FADE, CARD_LIGHT_FADE } from '../../../constants';
 import { ICard } from '../../../services/cards.service';
 import { getCardImage } from '../../../utils/get-card-image';
-import { CARD_DARK_FADE, CARD_LIGHT_FADE } from '../../../constants';
 
 interface Props {
   card: ICard;
   flipped: boolean;
+  isBottomCard: boolean;
 }
 
-export const Notecard: React.FC<Props> = ({ card, flipped }) => {
+export const Notecard: React.FC<Props> = ({ card, flipped, isBottomCard }) => {
+  const [starred, setStarred] = useState(card.starred);
   const deckData = useDeckData();
   const theme = useTheme();
 
-  const onStarClick = () => {};
+  useEffect(() => {
+    setStarred(card.starred);
+  }, [card]);
+
+  const onStarClick = () => {
+    const current = starred;
+    setStarred(!current);
+    deckData
+      .updateCard(card.id, {
+        ...card,
+        starred: !current,
+      })
+      .catch(() => {
+        setStarred(current);
+      });
+  };
 
   return (
     <Paper
@@ -27,7 +44,7 @@ export const Notecard: React.FC<Props> = ({ card, flipped }) => {
         height: '50vh',
         backgroundSize: 'cover',
         position: 'relative',
-        boxShadow: 3,
+        boxShadow: isBottomCard ? 1 : 3,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -48,10 +65,10 @@ export const Notecard: React.FC<Props> = ({ card, flipped }) => {
         </Typography>
         <IconButton
           size="large"
-          sx={{ position: 'absolute', top: 0, right: 0, mt: 0.5, mr: 1 }}
+          sx={{ position: 'absolute', top: 0, right: 0, mt: 1, mr: 2 }}
           onClick={onStarClick}
         >
-          {card.starred ? (
+          {starred ? (
             <StarIcon fontSize="large" />
           ) : (
             <StarOutlineIcon fontSize="large" />

@@ -12,7 +12,11 @@ export class DecksService {
   ) {}
 
   async findAll(): Promise<Deck[]> {
-    return await this.decksRepo.find();
+    return await this.decksRepo.find({
+      order: {
+        createdOn: 'DESC',
+      },
+    });
   }
 
   async findOne(id: string): Promise<Deck> {

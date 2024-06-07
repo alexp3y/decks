@@ -1,24 +1,19 @@
 import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { IDeck, decksService } from '../services/decks.service';
-import { BlankDeck } from './OverviewScreen/BlankDeck';
-import { Deck } from './OverviewScreen/Deck';
 import { useDeckData } from '../DeckDataContext';
+import { AddDeckButton } from './OverviewScreen/AddDeckButton';
+import { Deck } from './OverviewScreen/Deck';
 
 const OverviewScreen: React.FC = () => {
   const deckData = useDeckData();
-  const [decks, setDecks] = useState<IDeck[]>();
+  const [deckCreating, setDeckCreating] = useState(false);
 
   useEffect(() => {
-    if (deckData.deck) deckData.closeDeck();
-    decksService.findAll().then((d) => {
-      setDecks(d);
-    });
+    deckData.refreshDecks();
   }, []);
 
   const handleNewDeckClick = async () => {
-    const newDeck = await decksService.createOne('New Deck');
-    setDecks([newDeck, ...decks!]);
+    deckData.addDeck();
   };
 
   return (
@@ -29,7 +24,8 @@ const OverviewScreen: React.FC = () => {
         justifyContent: 'center',
         height: '100%',
         width: '100vw',
-        p: 5,
+        p: 7,
+        mb: 10,
         flexGrow: 0,
       }}
     >
@@ -48,9 +44,9 @@ const OverviewScreen: React.FC = () => {
           },
         }}
       >
-        <BlankDeck onClick={handleNewDeckClick} />
-        {decks?.map((d) => (
-          <Deck deck={d} />
+        <AddDeckButton onClick={handleNewDeckClick} />
+        {deckData.decks.map((d) => (
+          <Deck key={d.id} deck={d} />
         ))}
       </Box>
     </Box>

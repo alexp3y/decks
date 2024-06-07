@@ -1,16 +1,16 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import HeightIcon from '@mui/icons-material/Height';
-import LoopIcon from '@mui/icons-material/Loop';
-import Edit from '@mui/icons-material/Edit';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import { useTheme } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star';
 import { ControlButton } from './ControlPanel/ControlButton';
-import { useTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 interface Props {
+  onFirstCard: () => void;
+  onLastCard: () => void;
   onPrevCard: () => void;
   onNextCard: () => void;
   onFlipCard: () => void;
@@ -19,6 +19,8 @@ interface Props {
 }
 
 export const ControlPanel: React.FC<Props> = ({
+  onFirstCard,
+  onLastCard,
   onPrevCard,
   onNextCard,
   onFlipCard,
@@ -26,54 +28,41 @@ export const ControlPanel: React.FC<Props> = ({
   firstCard,
 }) => {
   const theme = useTheme();
-  const navigate = useNavigate();
-  const onReverseClick = () => {
-    // onCommand(Command.REVERSE_DECK, {});
-  };
-  const onStarredClick = () => {
-    // onCommand(Command.STAR_DECK, {});
-  };
-  const onEditClick = () => {
-    navigate(`./edit`);
-  };
+
   return (
     <Paper
       sx={{
         display: 'flex',
         boxShadow: 3,
         borderRadius: 5,
-        mt: 2,
+        mt: 1,
       }}
       variant={theme.palette.mode === 'dark' ? 'outlined' : 'elevation'}
     >
-      <ControlButton title="Edit" left border={true} onClick={onEditClick}>
-        <Edit style={iconStyles} />
-      </ControlButton>
-      <ControlButton title="REVERSE" border={true} onClick={onReverseClick}>
-        <LoopIcon style={iconStyles} />
-      </ControlButton>
-      <ControlButton title="STARRED" border={false} onClick={onStarredClick}>
-        <StarIcon style={iconStyles} />
-      </ControlButton>
-      <ControlButton title="FLIP" border={true} onClick={onFlipCard}>
-        <HeightIcon style={iconStyles} />
-      </ControlButton>
       <ControlButton
-        title="PREV"
-        border={true}
+        left
+        title="FIRST"
         disabled={firstCard}
-        onClick={onPrevCard}
+        onClick={onFirstCard}
       >
+        <FirstPageIcon style={iconStyles} />
+      </ControlButton>
+      <ControlButton title="PREV" disabled={firstCard} onClick={onPrevCard}>
         <ArrowBackIcon style={iconStyles} />
       </ControlButton>
-      <ControlButton
-        title="NEXT"
-        right
-        border={false}
-        disabled={lastCard}
-        onClick={onNextCard}
-      >
+      <ControlButton title="FLIP" onClick={onFlipCard}>
+        <FlipCameraAndroidIcon style={iconStyles} />
+      </ControlButton>
+      <ControlButton title="NEXT" disabled={lastCard} onClick={onNextCard}>
         <ArrowForwardIcon style={iconStyles} />
+      </ControlButton>
+      <ControlButton
+        title="LAST"
+        right
+        disabled={lastCard}
+        onClick={onLastCard}
+      >
+        <LastPageIcon style={iconStyles} />
       </ControlButton>
     </Paper>
   );

@@ -2,7 +2,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Box, IconButton, useTheme } from '@mui/material';
 import React, { useContext } from 'react';
-import { ColorModeContext } from '../../Bootstrap';
+import { ColorModeContext } from '../../../Bootstrap';
 
 const ColorModeSwitch: React.FC = () => {
   const theme = useTheme();
@@ -16,13 +16,9 @@ const ColorModeSwitch: React.FC = () => {
         justifyContent: 'center',
       }}
     >
-      <IconButton
-        sx={{ ml: 1 }}
-        onClick={colorMode.toggleColorMode}
-        color="inherit"
-      >
+      <IconButton onClick={colorMode.toggleColorMode}>
         {theme.palette.mode === 'dark' ? (
-          <Brightness7Icon />
+          <Brightness7Icon color="primary" />
         ) : (
           <Brightness4Icon />
         )}

@@ -23,6 +23,7 @@ const findByDeck = async (deckId: string): Promise<ICard[]> => {
 };
 
 const update = async (id: string, updates: Partial<ICard>) => {
+  console.log('updating');
   const res = await fetch(`http://localhost:5001/cards/${id}`, {
     method: 'PUT',
     body: JSON.stringify(updates),
@@ -30,6 +31,9 @@ const update = async (id: string, updates: Partial<ICard>) => {
       'Content-Type': 'application/json',
     },
   });
+  if (!res.ok) {
+    throw new Error('Unable to update');
+  }
   return res.json();
 };
 

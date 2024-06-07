@@ -9,7 +9,7 @@ export const CloseButton: React.FC = () => {
   const deckData = useDeckData();
 
   const handleCloseClick = () => {
-    navigate('/');
+    navigate('/decks');
     deckData.closeDeck();
   };
 

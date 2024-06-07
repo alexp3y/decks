@@ -10,6 +10,7 @@ import { DoneButton } from './TitleBanner/DoneButton';
 export const TitleBanner: React.FC = () => {
   const deckData = useDeckData();
   const location = useLocation();
+  const editMode = location.pathname.includes('/edit');
 
   return (
     <Slide in={!!deckData.deck} direction="down" timeout={500}>
@@ -18,21 +19,19 @@ export const TitleBanner: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           height: '100%',
-          gap: 1.5,
+          gap: 2,
         }}
       >
-        {deckData.deck &&
-          (location.pathname.includes('/edit') ? (
-            <>
-              <Typography variant="h4">Edit Deck</Typography>
-              <DoneButton />
-            </>
-          ) : (
-            <>
-              <Typography variant="h4">{deckData.deck!.name}</Typography>
-              <CloseButton />
-            </>
-          ))}
+        {deckData.deck && (
+          <Box sx={{ display: 'flex', ml: '70px' }}>
+            <Typography variant="h4">
+              {editMode ? 'Edit Deck' : deckData.deck!.name}
+            </Typography>
+            <Box sx={{ width: '50px', mx: '10px' }}>
+              {editMode ? <DoneButton /> : <CloseButton />}
+            </Box>
+          </Box>
+        )}
       </Box>
     </Slide>
   );

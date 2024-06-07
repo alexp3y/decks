@@ -1,4 +1,4 @@
-import { IsEnum, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsString } from 'class-validator';
 import { CardType } from 'src/model/enum/card-type.enum';
 
 export class UpdateCardDto {
@@ -10,4 +10,7 @@ export class UpdateCardDto {
 
   @IsString()
   back: string;
+
+  @IsBoolean()
+  starred: boolean;
 }

@@ -4,6 +4,7 @@ import OverviewScreen from './components/OverviewScreen';
 import DeckScreen from './components/DeckScreen';
 import { DeckProvider } from './DeckDataContext';
 import EditDeckScreen from './components/EditDeckScreen';
+import HomeScreen from './components/HomeScreen';
 
 export default function App() {
   return (
@@ -18,9 +19,12 @@ export default function App() {
           }
         >
           <Route path="/">
-            <Route index element={<OverviewScreen />} />
-            <Route path="/:deckId" element={<DeckScreen />} />
-            <Route path="/:deckId/edit" element={<EditDeckScreen />} />
+            <Route index element={<HomeScreen />} />
+            <Route path="/decks">
+              <Route index element={<OverviewScreen />} />
+              <Route path="/decks/:deckId" element={<DeckScreen />} />
+              <Route path="/decks/:deckId/edit" element={<EditDeckScreen />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

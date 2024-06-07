@@ -1,20 +1,21 @@
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
-  Card,
-  ListItem,
-  IconButton,
   Box,
-  TextField,
+  Card,
   Divider,
+  IconButton,
+  ListItem,
+  TextField,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { ICard, cardsService } from '../../services/cards.service';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { debounceAsync } from '../../utils/debounce-async';
-import { DeckSyncStatus, useDeckData } from '../../DeckDataContext';
+import { DeckSyncStatus, useDeckData } from '../../../DeckDataContext';
+import { ICard, cardsService } from '../../../services/cards.service';
+import { debounceAsync } from '../../../utils/debounce-async';
 
 interface RenderItemOptions {
   item: ICard;
   onRemoveCard: (id: string) => void;
+  onFocusOut: (card: ICard) => void;
 }
 
 const updateCard = (card: ICard, callback) => {
@@ -27,6 +28,7 @@ const debouncedUpdateCard = debounceAsync(updateCard, 1000);
 const EditCardListItem: React.FC<RenderItemOptions> = ({
   item,
   onRemoveCard,
+  onFocusOut,
 }) => {
   const deckData = useDeckData();
   const [card, setCard] = useState(item);
@@ -80,6 +82,7 @@ const EditCardListItem: React.FC<RenderItemOptions> = ({
               maxHeight: '100%',
               maxLength: 255,
             }}
+            onBlur={() => onFocusOut(card)}
             label="Front"
             placeholder="Front Content"
             multiline
@@ -99,6 +102,7 @@ const EditCardListItem: React.FC<RenderItemOptions> = ({
             sx={{ height: '100%', width: '100%' }}
             label="Back"
             placeholder="Back Content"
+            onBlur={() => onFocusOut(card)}
             multiline
             rows={3}
             variant="outlined"

@@ -22,7 +22,7 @@ export class CardsController {
 
   @Put(':id')
   async update(@Param('id') id, @Body() updateDto: UpdateCardDto) {
-    Logger.debug('card update: ' + updateDto.front);
+    Logger.debug('card update: ' + JSON.stringify(updateDto));
     return await this.cardsService.update(id, updateDto);
   }
 

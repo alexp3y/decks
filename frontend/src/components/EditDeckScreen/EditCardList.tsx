@@ -1,34 +1,29 @@
-import AddIcon from '@mui/icons-material/Add';
-import { Box, Fab, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import { TransitionGroup } from 'react-transition-group';
-import { useDeckData } from '../../DeckDataContext';
+import { DeckSyncStatus, useDeckData } from '../../DeckDataContext';
+import { ICard, cardsService } from '../../services/cards.service';
+import AddCardButton from './EditCardList/AddCardButton';
+import EditCardListItem from './EditCardList/EditCardListItem';
 import SyncIndicator from './SyncIndicator';
-import EditCardListItem from './EditCardListItem';
 
 export default function EditCardList() {
   const deckData = useDeckData();
-
-  const handleAddCard = () => {
-    deckData.addCard();
-  };
 
   const handleRemoveCard = (id: string) => {
     deckData.removeCard(id);
   };
 
-  const addCardButton = (
-    <Fab
-      color="primary"
-      sx={{ boxShadow: 2 }}
-      size="medium"
-      aria-label="add"
-      onClick={handleAddCard}
-    >
-      <AddIcon />
-    </Fab>
-  );
+  const handleItemFocusChange = (card: ICard) => {
+    if (deckData.syncStatus === DeckSyncStatus.CHANGED) {
+      console.log('SAVE FORCED');
+      deckData.setSyncStatus(DeckSyncStatus.LOADING);
+      cardsService.update(card.id, card).finally(() => {
+        deckData.setSyncStatus(DeckSyncStatus.SYNCED);
+      });
+    }
+  };
 
   return (
     <Box
@@ -46,22 +41,26 @@ export default function EditCardList() {
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '70px',
-          px: 2,
+          px: 1,
         }}
       >
         <SyncIndicator />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography sx={{}} variant="h5">
+          <Typography sx={{ fontSize: 26 }} variant="h5">
             Add Card
           </Typography>
-          {addCardButton}
+          <AddCardButton />
         </Box>
       </Box>
       <List sx={{ p: 0 }}>
         <TransitionGroup>
           {deckData.cards.map((item) => (
             <Collapse key={item.id}>
-              <EditCardListItem onRemoveCard={handleRemoveCard} item={item} />
+              <EditCardListItem
+                onRemoveCard={handleRemoveCard}
+                item={item}
+                onFocusOut={handleItemFocusChange}
+              />
             </Collapse>
           ))}
         </TransitionGroup>

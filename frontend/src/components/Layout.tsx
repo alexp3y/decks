@@ -8,14 +8,17 @@ const Layout: React.FC = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        minHeight: '100vh',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
       }}
     >
       <Navbar />
-      <Outlet />
+      <Box sx={{ width: '100%', flexGrow: 1 }}>
+        <Outlet />
+      </Box>
       <Footer />
     </Box>
   );

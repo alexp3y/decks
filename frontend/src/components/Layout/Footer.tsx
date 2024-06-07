@@ -7,7 +7,11 @@ const Footer: React.FC = () => {
   return (
     <Box
       sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
         width: '100%',
+        height: '100px',
         p: 2,
         ...(theme.palette.mode === 'light' && {
           backgroundColor: theme.palette.secondary.light,

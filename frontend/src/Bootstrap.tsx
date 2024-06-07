@@ -23,6 +23,9 @@ export default function Bootstrap() {
   const theme = React.useMemo(
     () =>
       createTheme({
+        typography: {
+          fontFamily: ['Roboto', '"Indie Flower"'].join(','),
+        },
         palette: {
           mode,
           ...(mode === 'light'

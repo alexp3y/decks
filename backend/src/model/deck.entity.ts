@@ -22,6 +22,9 @@ export class Deck {
   @Column({ default: 'DEFAULT' })
   color: string;
 
+  @Column({ default: false })
+  starred: boolean;
+
   @CreateDateColumn({
     name: 'created_on',
     type: 'timestamptz',

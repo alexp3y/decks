@@ -14,15 +14,16 @@ const EditDeckScreen: React.FC = () => {
       deckData.openDeck(deckId!);
     }
   }, []);
+
   return (
     <Container
       sx={{
-        mt: 4,
+        my: 4,
         height: '100%',
         width: '100%',
         display: 'flex',
         overflowY: 'scroll',
-        // maxHeight: '100%',
+        minHeight: '90vh',
         flexDirection: {
           xs: 'column',
           md: 'row',

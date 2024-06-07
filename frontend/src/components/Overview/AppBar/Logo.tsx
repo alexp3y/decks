@@ -1,29 +1,55 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import LogoImage from '../../../assets/images/NC-Logo.jpg';
+import { DeckColor } from '../../../services/decks.service';
+import { getCardImage } from '../../../utils/get-card-image';
+import { useDeckData } from '../../../DeckDataContext';
 
 export const Logo: React.FC = () => {
   const navigate = useNavigate();
+  const deckData = useDeckData();
+
+  const handleClick = () => {
+    deckData.closeDeck();
+    navigate('/');
+  };
+
   return (
     <Box
-      // sx={styles}
-      onClick={() => navigate('/')}
+      onClick={handleClick}
       sx={{
         ':hover': {
           cursor: 'pointer',
         },
-        background: `url(${LogoImage})`,
+        ...getCardImage(DeckColor.YELLOW, false),
         backgroundSize: 'cover',
-        width: '115px',
-        height: '100%',
+        width: {
+          xs: '115px',
+          sm: '125px',
+        },
+        height: {
+          xs: '60px',
+          sm: '65px',
+        },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: '16px',
       }}
     >
-      <h3 style={{ color: 'black' }}>DECKS</h3>
+      <Typography
+        sx={{
+          color: 'black',
+          fontFamily: 'Indie Flower',
+          mt: 1,
+          fontSize: {
+            xs: 30,
+            sm: 34,
+          },
+        }}
+      >
+        DECKSY
+      </Typography>
     </Box>
   );
 };

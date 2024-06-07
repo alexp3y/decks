@@ -3,11 +3,12 @@ import React, { ReactNode } from 'react';
 
 interface Props {
   title: string;
-  border: boolean;
   disabled?: boolean;
   active?: boolean;
   left?: boolean;
   right?: boolean;
+  top?: boolean;
+  bottom?: boolean;
   children: ReactNode;
   onClick(): void;
 }
@@ -18,6 +19,8 @@ export const ControlButton: React.FC<Props> = ({
   active,
   left,
   right,
+  top,
+  bottom,
   disabled,
   onClick,
 }) => {
@@ -29,11 +32,21 @@ export const ControlButton: React.FC<Props> = ({
   return (
     <Button
       sx={{
-        borderRadius: left ? '20px 0 0 20px' : right ? '0 20px 20px 0' : 0,
+        borderRadius: left
+          ? '20px 0 0 20px'
+          : right
+          ? '0 20px 20px 0'
+          : top
+          ? '20px 20px 0 0'
+          : bottom
+          ? '0 0 20px 20px'
+          : 0,
         display: 'flex',
         flexDirection: 'column',
-        width: '114px',
+        width: '95px',
         p: 1,
+        pb: bottom ? 1.5 : 1,
+        pt: top ? 1.5 : 1,
         gap: 0.5,
         // '&.MuiButton-text': { color: 'green' },
       }}
@@ -42,7 +55,9 @@ export const ControlButton: React.FC<Props> = ({
       onClick={clickHandler}
     >
       {children}
-      {title}
+      <Typography sx={{ fontSize: '12px' }} variant="button">
+        {title}
+      </Typography>
     </Button>
   );
 };
